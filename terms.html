@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Terms of Service — IAF MultiTools</title>
+
+  <meta
+    name="description"
+    content="Terms of Service for IAF MultiTools — Indonesia Advance Future."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #090909;
+      --panel: #111111;
+      --panel-2: #151515;
+      --panel-3: #0d0d0d;
+
+      --border: #292929;
+      --border-soft: #202020;
+
+      --text: #f2f2f2;
+      --soft: #bdbdbd;
+      --muted: #808080;
+      --dim: #555555;
+
+      --success: #78d99a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      background: var(--bg);
+      color: var(--text);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      padding: 12px 0 24px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      min-width: 0;
+    }
+
+    .logo {
+      width: auto;
+      height: 54px;
+      max-width: 180px;
+
+      display: block;
+
+      object-fit: contain;
+
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      min-width: 0;
+    }
+
+    .brand-name {
+      margin: 0;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 1.2px;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+    .header-status {
+      color: var(--muted);
+
+      font-size: 10px;
+      font-family: monospace;
+
+      white-space: nowrap;
+    }
+
+    .header-status span {
+      color: var(--success);
+    }
+
+
+    /* =====================================================
+       BACK BUTTON
+    ===================================================== */
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      flex-shrink: 0;
+
+      padding: 9px 13px;
+
+      background: #111111;
+
+      border: 1px solid var(--border);
+      border-radius: 8px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      font-weight: 700;
+
+      transition:
+        color 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .back-button:hover {
+      color: var(--text);
+
+      border-color: #3a3a3a;
+
+      background: #151515;
+    }
+
+    .back-button span {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+
+    /* =====================================================
+       PAGE HEADER
+    ===================================================== */
+
+    .page-header {
+      padding: 42px 0 45px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      margin-bottom: 16px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      font-weight: 700;
+
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      margin: 0;
+
+      font-size: clamp(42px, 7vw, 68px);
+      line-height: 0.95;
+
+      letter-spacing: -3px;
+    }
+
+    .page-description {
+      max-width: 700px;
+
+      margin: 25px 0 0;
+
+      color: var(--soft);
+
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      margin-top: 24px;
+    }
+
+    .meta-item {
+      padding: 7px 10px;
+
+      background: #121212;
+
+      border: 1px solid var(--border);
+      border-radius: 7px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      font-family: monospace;
+    }
+
+
+    /* =====================================================
+       CONTENT
+    ===================================================== */
+
+    .content {
+      padding-top: 45px;
+    }
+
+    .toc {
+      margin-bottom: 45px;
+
+      padding: 22px;
+
+      background: var(--panel-3);
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .toc-title {
+      margin: 0 0 14px;
+
+      color: var(--soft);
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .toc-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 7px 25px;
+    }
+
+    .toc-links a {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      transition: color 0.15s ease;
+    }
+
+    .toc-links a:hover {
+      color: var(--text);
+    }
+
+
+    /* =====================================================
+       TERMS SECTIONS
+    ===================================================== */
+
+    .terms-section {
+      padding: 34px 0;
+
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .terms-section:first-of-type {
+      border-top: none;
+    }
+
+    .section-number {
+      margin-bottom: 7px;
+
+      color: var(--dim);
+
+      font-size: 10px;
+      font-family: monospace;
+
+      letter-spacing: 0.5px;
+    }
+
+    .terms-section h2 {
+      margin: 0 0 15px;
+
+      font-size: 21px;
+      line-height: 1.3;
+
+      letter-spacing: -0.4px;
+    }
+
+    .terms-section p {
+      max-width: 820px;
+
+      margin: 0 0 15px;
+
+      color: var(--soft);
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .terms-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .terms-section strong {
+      color: var(--text);
+    }
+
+    .terms-section ul {
+      max-width: 820px;
+
+      margin: 12px 0 18px;
+      padding-left: 22px;
+
+      color: var(--soft);
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .terms-section li {
+      margin: 5px 0;
+      padding-left: 4px;
+    }
+
+
+    /* =====================================================
+       IMPORTANT NOTICE
+    ===================================================== */
+
+    .notice {
+      margin: 10px 0 35px;
+
+      padding: 22px;
+
+      background: #111111;
+
+      border: 1px solid var(--border);
+      border-left: 2px solid #555;
+
+      border-radius: 10px;
+    }
+
+    .notice-title {
+      margin: 0 0 8px;
+
+      color: var(--text);
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .notice p {
+      margin: 0;
+
+      color: var(--soft);
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       FINAL ACCEPTANCE
+    ===================================================== */
+
+    .acceptance {
+      margin-top: 20px;
+      padding: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #121212 0%,
+          #101010 55%,
+          #0d0d0d 100%
+        );
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+    }
+
+    .acceptance h2 {
+      margin: 0 0 12px;
+
+      font-size: 18px;
+    }
+
+    .acceptance p {
+      margin: 0;
+
+      color: var(--soft);
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer {
+      margin-top: 70px;
+      padding-top: 25px;
+
+      border-top: 1px solid var(--border);
+
+      color: #666;
+
+      text-align: center;
+
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .footer strong {
+      color: #aaa;
+    }
+
+    .footer-name {
+      color: #888;
+
+      font-size: 10px;
+      letter-spacing: 0.7px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 14px;
+
+      margin-top: 15px;
+    }
+
+    .footer-links a {
+      color: #666;
+
+      font-size: 10px;
+    }
+
+    .footer-links a:hover {
+      color: #aaa;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 700px) {
+
+      .app {
+        width: min(100% - 20px, 980px);
+
+        padding-top: 18px;
+      }
+
+      .header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 18px;
+      }
+
+      .brand {
+        width: 100%;
+      }
+
+      .logo {
+        height: 48px;
+        max-width: 150px;
+      }
+
+      .brand-name {
+        white-space: normal;
+      }
+
+      .back-button {
+        align-self: flex-start;
+      }
+
+      .header-status {
+        display: none;
+      }
+
+      .page-header {
+        padding-top: 30px;
+      }
+
+      .page-title {
+        letter-spacing: -2.5px;
+      }
+
+      .page-description {
+        font-size: 14px;
+      }
+
+      .toc-links {
+        grid-template-columns: 1fr;
+      }
+
+      .terms-section {
+        padding: 29px 0;
+      }
+
+      .terms-section h2 {
+        font-size: 19px;
+      }
+
+      .terms-section p,
+      .terms-section ul {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <main class="app">
+
+
+    <!-- ===================================================
+         HEADER
+    =================================================== -->
+
+    <header class="header">
+
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="IAF MultiTools home"
+      >
+
+        <img
+          class="logo"
+          src="asset/iaf-logo.png"
+          alt="Indonesia Advance Future"
+        />
+
+        <div class="brand-info">
+
+          <h1 class="brand-name">
+            INDONESIA ADVANCE FUTURE
+          </h1>
+
+          <p class="brand-subtitle">
+            MULTITOOLS / LOCAL-FIRST
+          </p>
+
+        </div>
+
+      </a>
+
+
+      <a
+        class="back-button"
+        href="index.html"
+        onclick="if (history.length > 1) { history.back(); return false; }"
+      >
+        <span>←</span>
+        Back
+      </a>
+
+    </header>
+
+
+
+    <!-- ===================================================
+         PAGE HEADER
+    =================================================== -->
+
+    <section class="page-header">
+
+      <div class="page-label">
+        IAF MULTITOOLS / LEGAL
+      </div>
+
+      <h2 class="page-title">
+        Terms of<br />
+        Service.
+      </h2>
+
+      <p class="page-description">
+        These Terms govern your access to and use of
+        IAF MultiTools, including its websites,
+        software, tools, features, and related services.
+      </p>
+
+      <div class="page-meta">
+
+        <div class="meta-item">
+          EFFECTIVE: SEPTEMBER 12, 2026
+        </div>
+
+        <div class="meta-item">
+          UPDATED: SEPTEMBER 12, 2026
+        </div>
+
+        <div class="meta-item">
+          OPERATOR: INDONESIA ADVANCE FUTURE
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         CONTENT
+    =================================================== -->
+
+    <div class="content">
+
+
+      <!-- TABLE OF CONTENTS -->
+
+      <nav class="toc">
+
+        <h2 class="toc-title">
+          Contents
+        </h2>
+
+        <div class="toc-links">
+
+          <a href="#section-1">01 — Eligibility and Acceptance</a>
+          <a href="#section-2">02 — Description of the Service</a>
+          <a href="#section-3">03 — User Content</a>
+          <a href="#section-4">04 — Generated Content</a>
+          <a href="#section-5">05 — Copyright and Intellectual Property</a>
+          <a href="#section-6">06 — ShortVid Watermark Policy</a>
+          <a href="#section-7">07 — Acceptable Use</a>
+          <a href="#section-8">08 — Third-Party Services</a>
+          <a href="#section-9">09 — Advertising</a>
+          <a href="#section-10">10 — Service Availability and Changes</a>
+          <a href="#section-11">11 — No Warranty</a>
+          <a href="#section-12">12 — Limitation of Liability</a>
+          <a href="#section-13">13 — User Indemnification</a>
+          <a href="#section-14">14 — Privacy</a>
+          <a href="#section-15">15 — Suspension and Termination</a>
+          <a href="#section-16">16 — Changes to These Terms</a>
+          <a href="#section-17">17 — Governing Law</a>
+          <a href="#section-18">18 — Severability</a>
+          <a href="#section-19">19 — Entire Agreement</a>
+          <a href="#section-20">20 — Contact</a>
+
+        </div>
+
+      </nav>
+
+
+
+      <!-- SECTION 01 -->
+
+      <section class="terms-section" id="section-1">
+
+        <div class="section-number">
+          SECTION 01
+        </div>
+
+        <h2>
+          Eligibility and Acceptance
+        </h2>
+
+        <p>
+          You may use the Service only if you are
+          legally permitted to do so under the laws
+          applicable to you.
+        </p>
+
+        <p>
+          By using the Service, you represent that:
+        </p>
+
+        <ul>
+          <li>
+            You have the legal capacity required to
+            enter into these Terms; and
+          </li>
+
+          <li>
+            Your use of the Service will comply with
+            these Terms and all applicable laws and
+            regulations.
+          </li>
+        </ul>
+
+        <p>
+          If you are using the Service on behalf of
+          an organization, you represent that you have
+          authority to bind that organization to these
+          Terms.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 02 -->
+
+      <section class="terms-section" id="section-2">
+
+        <div class="section-number">
+          SECTION 02
+        </div>
+
+        <h2>
+          Description of the Service
+        </h2>
+
+        <p>
+          IAF MultiTools provides a collection of
+          online tools and utilities, which may include
+          text processing, text-to-speech, content
+          generation, media generation, video generation,
+          file conversion, calculators, and other
+          software features.
+        </p>
+
+        <p>
+          The Service may rely on third-party software,
+          infrastructure, APIs, hosting providers,
+          artificial intelligence systems, advertising
+          providers, or other external services.
+        </p>
+
+        <p>
+          IAF reserves the right to add, modify,
+          suspend, limit, or discontinue any feature or
+          portion of the Service at any time, with or
+          without notice, where reasonably necessary.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 03 -->
+
+      <section class="terms-section" id="section-3">
+
+        <div class="section-number">
+          SECTION 03
+        </div>
+
+        <h2>
+          User Content
+        </h2>
+
+        <p>
+          "User Content" means any text, images, audio,
+          video, files, prompts, data, or other material
+          that you submit, upload, provide, or otherwise
+          make available through the Service.
+        </p>
+
+        <p>
+          You retain ownership of the rights you already
+          possess in your User Content.
+        </p>
+
+        <p>
+          By submitting User Content to the Service,
+          you represent and warrant that you have all
+          rights, permissions, licenses, and
+          authorizations necessary to submit and process
+          that content.
+        </p>
+
+        <p>
+          You are solely responsible for your User
+          Content and for ensuring that your use of such
+          content does not violate applicable law or the
+          rights of any third party.
+        </p>
+
+        <p>
+          IAF does not claim ownership of your User
+          Content merely because you submit or process it
+          through the Service.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 04 -->
+
+      <section class="terms-section" id="section-4">
+
+        <div class="section-number">
+          SECTION 04
+        </div>
+
+        <h2>
+          Generated Content
+        </h2>
+
+        <p>
+          Certain features of the Service may generate
+          text, audio, images, video, or other material
+          ("Generated Content") based on User Content,
+          prompts, settings, or other inputs.
+        </p>
+
+        <p>
+          Generated Content may be inaccurate,
+          incomplete, unpredictable, or unsuitable for
+          a particular purpose.
+        </p>
+
+        <p>
+          You are responsible for reviewing Generated
+          Content before publishing, distributing,
+          commercializing, or otherwise using it.
+        </p>
+
+        <p>
+          IAF does not guarantee that Generated Content:
+        </p>
+
+        <ul>
+          <li>
+            Will be accurate or factually correct;
+          </li>
+
+          <li>
+            Will be unique or exclusive to you;
+          </li>
+
+          <li>
+            Will be free from third-party
+            intellectual-property claims;
+          </li>
+
+          <li>
+            Will be suitable for a particular purpose;
+            or
+          </li>
+
+          <li>
+            Will comply with the rules or policies of
+            a platform on which you publish it.
+          </li>
+        </ul>
+
+        <p>
+          You are solely responsible for determining
+          whether Generated Content is appropriate for
+          your intended use.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 05 -->
+
+      <section class="terms-section" id="section-5">
+
+        <div class="section-number">
+          SECTION 05
+        </div>
+
+        <h2>
+          Copyright and Intellectual Property
+        </h2>
+
+        <p>
+          You must not use the Service to infringe
+          copyright, trademark, privacy, publicity,
+          or other intellectual-property or proprietary
+          rights.
+        </p>
+
+        <p>
+          You are responsible for obtaining any
+          permissions or licenses required for material
+          you upload, process, or incorporate into
+          Generated Content.
+        </p>
+
+        <p>
+          The Service itself, including its software,
+          source code, user interface, design, branding,
+          logos, documentation, and other materials
+          provided by IAF, is owned by or licensed to IAF
+          and is protected by applicable
+          intellectual-property laws.
+        </p>
+
+        <p>
+          Except as expressly permitted by IAF or
+          applicable law, you may not:
+        </p>
+
+        <ul>
+          <li>
+            Copy or reproduce substantial portions of
+            the Service;
+          </li>
+
+          <li>
+            Redistribute or commercially resell the
+            Service itself;
+          </li>
+
+          <li>
+            Reverse engineer, decompile, or attempt to
+            extract source code from the Service;
+          </li>
+
+          <li>
+            Remove proprietary notices belonging to IAF
+            from the Service; or
+          </li>
+
+          <li>
+            Misrepresent your relationship with IAF.
+          </li>
+        </ul>
+
+        <p>
+          Nothing in these Terms transfers ownership of
+          IAF's intellectual property to you.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 06 -->
+
+      <section class="terms-section" id="section-6">
+
+        <div class="section-number">
+          SECTION 06
+        </div>
+
+        <h2>
+          ShortVid Watermark Policy
+        </h2>
+
+        <p>
+          Certain video content generated through
+          <strong>IAF MultiTools ShortVid</strong> may
+          contain a watermark identifying the Service,
+          such as
+          <strong>
+            "made with shortvid.indoadfuture.com"
+          </strong>
+          or another designation used by IAF.
+        </p>
+
+        <p>
+          The watermark is intended to identify the
+          origin of the generated content, help users
+          discover the Service, and support the operation
+          and continued development of ShortVid.
+        </p>
+
+        <div class="notice">
+
+          <div class="notice-title">
+            Watermark Requirement
+          </div>
+
+          <p>
+            You must not intentionally remove, crop out,
+            cover, obscure, distort, or otherwise attempt
+            to conceal the ShortVid watermark from
+            Generated Content.
+          </p>
+
+        </div>
+
+        <p>
+          This restriction applies whether the Generated
+          Content is shared publicly, privately,
+          commercially, or on a third-party platform.
+        </p>
+
+        <p>
+          You may resize, edit, or otherwise modify
+          Generated Content for legitimate purposes,
+          provided that such modification does not
+          intentionally remove or obscure the ShortVid
+          watermark.
+        </p>
+
+        <p>
+          IAF may restrict or terminate access to ShortVid
+          or other portions of the Service if a user
+          repeatedly or intentionally violates this
+          watermark policy.
+        </p>
+
+        <p>
+          IAF reserves the right to modify the appearance,
+          placement, wording, or technical implementation
+          of the watermark at any time.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 07 -->
+
+      <section class="terms-section" id="section-7">
+
+        <div class="section-number">
+          SECTION 07
+        </div>
+
+        <h2>
+          Acceptable Use
+        </h2>
+
+        <p>
+          You agree not to use the Service to:
+        </p>
+
+        <ul>
+          <li>
+            Violate any applicable law or regulation;
+          </li>
+
+          <li>
+            Infringe the rights of another person or
+            organization;
+          </li>
+
+          <li>
+            Distribute malware, malicious code, or
+            harmful software;
+          </li>
+
+          <li>
+            Attempt unauthorized access to the Service
+            or its infrastructure;
+          </li>
+
+          <li>
+            Interfere with, disrupt, overload, or degrade
+            the Service;
+          </li>
+
+          <li>
+            Circumvent rate limits, access controls,
+            security mechanisms, or technical
+            restrictions;
+          </li>
+
+          <li>
+            Abuse automated systems or intentionally
+            consume unreasonable resources;
+          </li>
+
+          <li>
+            Conduct fraud, impersonation, or deceptive
+            activity;
+          </li>
+
+          <li>
+            Use the Service to facilitate unlawful
+            activity; or
+          </li>
+
+          <li>
+            Otherwise misuse the Service in a manner
+            that may materially harm IAF, its
+            infrastructure, or other users.
+          </li>
+        </ul>
+
+        <p>
+          IAF may investigate suspected violations and
+          may take reasonable action, including limiting
+          or terminating access.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 08 -->
+
+      <section class="terms-section" id="section-8">
+
+        <div class="section-number">
+          SECTION 08
+        </div>
+
+        <h2>
+          Third-Party Services
+        </h2>
+
+        <p>
+          The Service may integrate with or depend upon
+          third-party services.
+        </p>
+
+        <p>
+          Third-party services may have their own terms,
+          privacy policies, usage restrictions, and
+          licensing requirements.
+        </p>
+
+        <p>
+          IAF does not control and is not responsible for
+          the availability, accuracy, security, or
+          continued operation of third-party services.
+        </p>
+
+        <p>
+          A change, outage, restriction, or
+          discontinuation of a third-party service may
+          affect the availability or functionality of
+          IAF MultiTools.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 09 -->
+
+      <section class="terms-section" id="section-9">
+
+        <div class="section-number">
+          SECTION 09
+        </div>
+
+        <h2>
+          Advertising
+        </h2>
+
+        <p>
+          IAF MultiTools may display advertisements
+          provided by third-party advertising providers.
+        </p>
+
+        <p>
+          Advertisements may appear alongside, between,
+          or within certain areas of the Service.
+        </p>
+
+        <p>
+          IAF does not necessarily endorse products,
+          services, statements, or claims contained in
+          third-party advertisements.
+        </p>
+
+        <p>
+          Advertising providers may independently
+          determine the advertisements displayed based
+          on their own systems, policies, and applicable
+          privacy requirements.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 10 -->
+
+      <section class="terms-section" id="section-10">
+
+        <div class="section-number">
+          SECTION 10
+        </div>
+
+        <h2>
+          Service Availability and Changes
+        </h2>
+
+        <p>
+          IAF MultiTools is provided on an
+          <strong>"AS IS"</strong>
+          and
+          <strong>"AS AVAILABLE"</strong>
+          basis to the maximum extent permitted by
+          applicable law.
+        </p>
+
+        <p>
+          IAF does not warrant that the Service will:
+        </p>
+
+        <ul>
+          <li>
+            Be continuously available;
+          </li>
+
+          <li>
+            Operate without interruption;
+          </li>
+
+          <li>
+            Be free of errors or defects;
+          </li>
+
+          <li>
+            Produce consistent results;
+          </li>
+
+          <li>
+            Preserve every uploaded or generated file;
+            or
+          </li>
+
+          <li>
+            Remain unchanged indefinitely.
+          </li>
+        </ul>
+
+        <p>
+          Service availability may be affected by
+          maintenance, technical failures,
+          infrastructure issues, third-party outages,
+          network problems, security incidents, or
+          circumstances beyond IAF's reasonable control.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 11 -->
+
+      <section class="terms-section" id="section-11">
+
+        <div class="section-number">
+          SECTION 11
+        </div>
+
+        <h2>
+          No Warranty
+        </h2>
+
+        <p>
+          To the maximum extent permitted by applicable
+          law, IAF makes no express or implied warranties
+          regarding the Service, including warranties of
+          merchantability, fitness for a particular
+          purpose, non-infringement, availability,
+          accuracy, or reliability.
+        </p>
+
+        <p>
+          Your use of the Service is at your own
+          discretion and risk.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 12 -->
+
+      <section class="terms-section" id="section-12">
+
+        <div class="section-number">
+          SECTION 12
+        </div>
+
+        <h2>
+          Limitation of Liability
+        </h2>
+
+        <p>
+          To the maximum extent permitted by applicable
+          law, IAF and its developers, contributors,
+          operators, affiliates, and service providers
+          will not be liable for indirect, incidental,
+          special, consequential, exemplary, or punitive
+          damages arising from or relating to your use
+          of, or inability to use, the Service.
+        </p>
+
+        <p>
+          This includes, without limitation, loss of
+          data, loss of revenue, loss of profits, loss
+          of business opportunities, service interruptions,
+          or claims arising from Generated Content.
+        </p>
+
+        <p>
+          Nothing in these Terms excludes or limits
+          liability that cannot lawfully be excluded or
+          limited under applicable law.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 13 -->
+
+      <section class="terms-section" id="section-13">
+
+        <div class="section-number">
+          SECTION 13
+        </div>
+
+        <h2>
+          User Indemnification
+        </h2>
+
+        <p>
+          To the maximum extent permitted by applicable
+          law, you agree to defend, indemnify, and hold
+          harmless IAF and its developers, contributors,
+          operators, affiliates, and service providers
+          from claims, liabilities, damages, losses, and
+          reasonable expenses arising from:
+        </p>
+
+        <ul>
+          <li>
+            Your violation of these Terms;
+          </li>
+
+          <li>
+            Your User Content;
+          </li>
+
+          <li>
+            Your misuse of the Service; or
+          </li>
+
+          <li>
+            Your violation of applicable law or
+            third-party rights.
+          </li>
+        </ul>
+
+      </section>
+
+
+
+      <!-- SECTION 14 -->
+
+      <section class="terms-section" id="section-14">
+
+        <div class="section-number">
+          SECTION 14
+        </div>
+
+        <h2>
+          Privacy
+        </h2>
+
+        <p>
+          Your use of IAF MultiTools may involve the
+          collection or processing of technical
+          information and other data depending on the
+          features you use.
+        </p>
+
+        <p>
+          The handling of personal information is
+          described in the applicable
+          <strong>
+            IAF MultiTools Privacy Policy.
+          </strong>
+        </p>
+
+        <p>
+          You should review the Privacy Policy before
+          using features that process personal
+          information or uploaded content.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 15 -->
+
+      <section class="terms-section" id="section-15">
+
+        <div class="section-number">
+          SECTION 15
+        </div>
+
+        <h2>
+          Suspension and Termination
+        </h2>
+
+        <p>
+          IAF may suspend, restrict, or terminate your
+          access to all or part of the Service if:
+        </p>
+
+        <ul>
+          <li>
+            You materially violate these Terms;
+          </li>
+
+          <li>
+            You abuse or attempt to compromise the
+            Service;
+          </li>
+
+          <li>
+            Your activity creates a security, legal, or
+            operational risk; or
+          </li>
+
+          <li>
+            Such action is reasonably necessary to
+            protect IAF, the Service, or other users.
+          </li>
+        </ul>
+
+        <p>
+          Where reasonably practicable, IAF may provide
+          notice before taking such action.
+        </p>
+
+        <p>
+          You may stop using the Service at any time.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 16 -->
+
+      <section class="terms-section" id="section-16">
+
+        <div class="section-number">
+          SECTION 16
+        </div>
+
+        <h2>
+          Changes to These Terms
+        </h2>
+
+        <p>
+          IAF may modify these Terms from time to time.
+        </p>
+
+        <p>
+          When changes are made, IAF may update the
+          "Last Updated" date and, where appropriate,
+          provide additional notice.
+        </p>
+
+        <p>
+          Your continued use of the Service after the
+          updated Terms become effective constitutes your
+          acceptance of the revised Terms.
+        </p>
+
+        <p>
+          If you do not agree with the revised Terms,
+          you must stop using the Service.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 17 -->
+
+      <section class="terms-section" id="section-17">
+
+        <div class="section-number">
+          SECTION 17
+        </div>
+
+        <h2>
+          Governing Law
+        </h2>
+
+        <p>
+          These Terms shall be governed by and
+          interpreted in accordance with the laws
+          applicable to IAF and the jurisdiction in which
+          the Service is operated, unless otherwise
+          required by applicable law.
+        </p>
+
+        <p>
+          Any dispute arising from these Terms or the
+          Service shall be handled in accordance with
+          applicable law.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 18 -->
+
+      <section class="terms-section" id="section-18">
+
+        <div class="section-number">
+          SECTION 18
+        </div>
+
+        <h2>
+          Severability
+        </h2>
+
+        <p>
+          If any provision of these Terms is determined
+          to be invalid, unlawful, or unenforceable,
+          that provision shall be interpreted or limited
+          to the minimum extent necessary, and the
+          remaining provisions shall remain in full
+          force and effect.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 19 -->
+
+      <section class="terms-section" id="section-19">
+
+        <div class="section-number">
+          SECTION 19
+        </div>
+
+        <h2>
+          Entire Agreement
+        </h2>
+
+        <p>
+          These Terms, together with any applicable
+          policies or additional terms referenced herein,
+          constitute the agreement between you and IAF
+          regarding your use of the Service and supersede
+          prior agreements concerning the same subject
+          matter, except where otherwise expressly stated.
+        </p>
+
+      </section>
+
+
+
+      <!-- SECTION 20 -->
+
+      <section class="terms-section" id="section-20">
+
+        <div class="section-number">
+          SECTION 20
+        </div>
+
+        <h2>
+          Contact
+        </h2>
+
+        <p>
+          If you have questions, concerns, copyright
+          complaints, or other inquiries regarding
+          IAF MultiTools or these Terms, please use the
+          official contact channel provided by IAF.
+        </p>
+
+      </section>
+
+
+
+      <!-- FINAL ACCEPTANCE -->
+
+      <section class="acceptance">
+
+        <h2>
+          Acceptance of These Terms
+        </h2>
+
+        <p>
+          By accessing or using IAF MultiTools, you
+          acknowledge that you have read, understood,
+          and agreed to these Terms of Service.
+        </p>
+
+      </section>
+
+
+    </div>
+
+
+
+    <!-- ===================================================
+         FOOTER
+    =================================================== -->
+
+    <footer class="footer">
+
+      <strong>
+        IAF MultiTools
+      </strong>
+
+      <br />
+
+      <span class="footer-name">
+        INDONESIA ADVANCE FUTURE
+      </span>
+
+      <br />
+
+      We localize cloud thing for you.
+
+      <div class="footer-links">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="terms.html">
+          Terms
+        </a>
+
+        <a href="#">
+          Privacy
+        </a>
+
+        <a href="#">
+          Disclaimer
+        </a>
+
+      </div>
+
+      <br />
+
+      © 2026 Indonesia Advance Future (IAF).
+      All rights reserved.
+
+    </footer>
+
+
+  </main>
+
+</body>
+</html>

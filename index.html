@@ -56,6 +56,11 @@
       text-decoration: none;
     }
 
+
+    /* =====================================================
+       APP
+    ===================================================== */
+
     .app {
       width: min(1180px, calc(100% - 32px));
 
@@ -86,6 +91,8 @@
       align-items: center;
 
       gap: 16px;
+
+      min-width: 0;
     }
 
     .logo {
@@ -110,6 +117,8 @@
       flex-direction: column;
 
       gap: 3px;
+
+      min-width: 0;
     }
 
     .brand-name {
@@ -119,6 +128,8 @@
       font-weight: 700;
 
       letter-spacing: 1.2px;
+
+      white-space: nowrap;
     }
 
     .brand-subtitle {
@@ -135,9 +146,9 @@
     ===================================================== */
 
     .hero {
-      padding: 76px 0 50px;
-
       max-width: 930px;
+
+      padding: 76px 0 50px;
     }
 
     .hero-label {
@@ -173,6 +184,10 @@
       font-size: 18px;
 
       line-height: 1.6;
+    }
+
+    .hero-subtitle strong {
+      color: var(--text);
     }
 
     .hero-note {
@@ -333,35 +348,42 @@
     }
 
 
-/* =====================================================
-   AD SLOT
-===================================================== */
+    /* =====================================================
+       AD SLOT
+    ===================================================== */
 
-.ad-slot {
-  width: 100%;
-  aspect-ratio: 320 / 100;
+    .ad-slot {
+      width: 100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      aspect-ratio: 320 / 100;
 
-  margin-top: 30px;
-  overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  background: #0d0d0d;
-  border: 1px dashed #303030;
-  border-radius: 12px;
+      margin-top: 30px;
 
-  color: var(--dim);
-  text-align: center;
-}
+      overflow: hidden;
 
-.ad-slot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+      background: #0d0d0d;
+
+      border: 1px dashed #303030;
+
+      border-radius: 12px;
+
+      color: var(--dim);
+
+      text-align: center;
+    }
+
+    .ad-slot img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+    }
 
 
     /* =====================================================
@@ -381,7 +403,6 @@
       position: relative;
 
       display: flex;
-
       flex-direction: column;
 
       min-height: 230px;
@@ -461,6 +482,7 @@
 
     .category-meta {
       margin-top: auto;
+
       padding-top: 25px;
 
       color: var(--muted);
@@ -655,7 +677,7 @@
       display: grid;
 
       grid-template-columns:
-        repeat(2, 1fr);
+        1fr;
 
       gap: 14px;
     }
@@ -679,6 +701,8 @@
     .legal-card p {
       margin: 0;
 
+      max-width: 850px;
+
       color: var(--muted);
 
       font-size: 12px;
@@ -691,13 +715,19 @@
 
       margin-top: 16px;
 
+      padding-bottom: 2px;
+
       color: var(--soft);
 
       font-size: 11px;
 
       border-bottom: 1px solid #444;
 
-      padding-bottom: 2px;
+      transition: color 0.15s ease;
+    }
+
+    .legal-link:hover {
+      color: var(--text);
     }
 
 
@@ -789,6 +819,8 @@
       color: #666;
 
       font-size: 10px;
+
+      transition: color 0.15s ease;
     }
 
     .footer-links a:hover {
@@ -811,10 +843,6 @@
       }
 
       .philosophy {
-        grid-template-columns: 1fr;
-      }
-
-      .legal-grid {
         grid-template-columns: 1fr;
       }
 
@@ -852,6 +880,10 @@
         height: 48px;
 
         max-width: 150px;
+      }
+
+      .brand-name {
+        white-space: normal;
       }
 
       .hero {
@@ -897,7 +929,11 @@
 
     <header class="header">
 
-      <div class="brand">
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="IAF MultiTools home"
+      >
 
         <img
           class="logo"
@@ -916,6 +952,8 @@
           </p>
 
         </div>
+
+      </a>
 
     </header>
 
@@ -1035,7 +1073,10 @@
          Loaded by asset/ads.js
     =================================================== -->
 
-    <div class="ad-slot"></div>
+    <div
+      class="ad-slot"
+      aria-label="Advertisement"
+    ></div>
 
 
 
@@ -1071,6 +1112,7 @@
         <a
           class="category-card"
           href="#"
+          aria-label="Short Video tools"
         >
 
           <span class="category-number">
@@ -1106,6 +1148,7 @@
         <a
           class="category-card"
           href="#"
+          aria-label="Audio tools"
         >
 
           <span class="category-number">
@@ -1141,6 +1184,7 @@
         <a
           class="category-card"
           href="#"
+          aria-label="Video tools"
         >
 
           <span class="category-number">
@@ -1176,6 +1220,7 @@
         <a
           class="category-card"
           href="#"
+          aria-label="Image tools"
         >
 
           <span class="category-number">
@@ -1211,6 +1256,7 @@
         <a
           class="category-card"
           href="#"
+          aria-label="AI tools"
         >
 
           <span class="category-number">
@@ -1246,6 +1292,7 @@
         <a
           class="category-card"
           href="#"
+          aria-label="More MultiTools"
         >
 
           <span class="category-number">
@@ -1287,12 +1334,15 @@
          Loaded by asset/ads.js
     =================================================== -->
 
-    <div class="ad-slot"></div>
+    <div
+      class="ad-slot"
+      aria-label="Advertisement"
+    ></div>
 
 
 
     <!-- ===================================================
-         MORE CATEGORIES / BULLSHIT
+         MORE THAN CONTENT TOOLS
     =================================================== -->
 
     <section class="section">
@@ -1603,7 +1653,7 @@
           </h2>
 
           <p class="section-description">
-            Yes, the boring legal stuff exists too.
+            The legal information governing use of IAF MultiTools.
           </p>
 
         </div>
@@ -1622,43 +1672,19 @@
 
           <p>
 
-            Rules for using IAF MultiTools,
-            including acceptable use, service
-            availability, limitations, and
-            general responsibilities.
+            The Terms of Service explain the rules for
+            using IAF MultiTools, including user content,
+            generated content, acceptable use,
+            third-party services, advertising,
+            service changes, liability, and termination.
 
           </p>
 
           <a
             class="legal-link"
-            href="#"
+            href="terms.html"
           >
             Read Terms of Service →
-          </a>
-
-        </div>
-
-
-        <div class="legal-card">
-
-          <h3>
-            EULA
-          </h3>
-
-          <p>
-
-            The End User License Agreement
-            explains the conditions under which
-            IAF software and tools are provided
-            and used.
-
-          </p>
-
-          <a
-            class="legal-link"
-            href="#"
-          >
-            Read EULA →
           </a>
 
         </div>
@@ -1723,6 +1749,19 @@
 
         </p>
 
+        <p>
+
+          For the complete legal terms governing use
+          of the service, please refer to the
+          <a
+            href="terms.html"
+            style="color: var(--soft); text-decoration: underline;"
+          >
+            Terms of Service
+          </a>.
+
+        </p>
+
       </div>
 
     </section>
@@ -1751,23 +1790,33 @@
 
       <div class="footer-links">
 
-        <a href="#">
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="terms.html">
           Terms
         </a>
 
-        <a href="#">
-          EULA
-        </a>
+        <!--
+          Privacy and Disclaimer pages do not exist yet.
+          Keep these as plain text until their pages are created.
+        -->
 
-        <a href="#">
+        <span>
           Privacy
-        </a>
+        </span>
 
-        <a href="#">
+        <span>
           Disclaimer
-        </a>
+        </span>
 
       </div>
+
+      <br />
+
+      © 2026 Indonesia Advance Future (IAF).
+      All rights reserved.
 
     </footer>
 

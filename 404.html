@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>404 — Page Not Found | IAF MultiTools</title>
+
+  <meta
+    name="description"
+    content="The page you are looking for could not be found on IAF MultiTools."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #090909;
+      --panel: #111111;
+      --panel-2: #151515;
+
+      --border: #292929;
+      --border-soft: #202020;
+
+      --text: #f2f2f2;
+      --soft: #bdbdbd;
+      --muted: #808080;
+      --dim: #555555;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      background: var(--bg);
+      color: var(--text);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* =====================================================
+       APP
+    ===================================================== */
+
+    .app {
+      width: min(980px, calc(100% - 32px));
+
+      min-height: 100vh;
+
+      margin: 0 auto;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      padding: 28px 0 24px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+
+      gap: 16px;
+
+      min-width: 0;
+    }
+
+    .logo {
+      width: auto;
+      height: 54px;
+      max-width: 180px;
+
+      display: block;
+
+      object-fit: contain;
+
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+
+      gap: 3px;
+
+      min-width: 0;
+    }
+
+    .brand-name {
+      margin: 0;
+
+      color: var(--text);
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 1.2px;
+
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+
+    /* =====================================================
+       BACK BUTTON
+    ===================================================== */
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 8px;
+
+      flex-shrink: 0;
+
+      padding: 9px 13px;
+
+      background: #111111;
+
+      border: 1px solid var(--border);
+      border-radius: 8px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      font-weight: 700;
+
+      transition:
+        color 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .back-button:hover {
+      color: var(--text);
+
+      border-color: #3a3a3a;
+
+      background: #151515;
+    }
+
+    .back-button span {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+
+    /* =====================================================
+       ERROR AREA
+    ===================================================== */
+
+    .error-area {
+      flex: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 80px 0;
+    }
+
+    .error-content {
+      width: 100%;
+      max-width: 720px;
+
+      text-align: center;
+    }
+
+
+    /* =====================================================
+       404 NUMBER
+    ===================================================== */
+
+    .error-code {
+      margin: 0;
+
+      color: var(--text);
+
+      font-size: clamp(100px, 22vw, 210px);
+      font-weight: 800;
+
+      line-height: 0.82;
+
+      letter-spacing: -12px;
+
+      user-select: none;
+    }
+
+
+    /* =====================================================
+       ERROR TEXT
+    ===================================================== */
+
+    .error-label {
+      margin-top: 38px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      font-weight: 700;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    .error-title {
+      margin: 12px 0 0;
+
+      color: var(--text);
+
+      font-size: clamp(28px, 5vw, 44px);
+
+      line-height: 1;
+
+      letter-spacing: -1.8px;
+    }
+
+    .error-description {
+      max-width: 520px;
+
+      margin: 20px auto 0;
+
+      color: var(--soft);
+
+      font-size: 14px;
+
+      line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       ACTIONS
+    ===================================================== */
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 120px;
+
+      padding: 11px 15px;
+
+      border-radius: 8px;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      transition:
+        color 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .button-primary {
+      background: var(--text);
+
+      border: 1px solid var(--text);
+
+      color: #090909;
+    }
+
+    .button-primary:hover {
+      background: #d8d8d8;
+
+      border-color: #d8d8d8;
+    }
+
+    .button-secondary {
+      background: #111111;
+
+      border: 1px solid var(--border);
+
+      color: var(--muted);
+    }
+
+    .button-secondary:hover {
+      background: #151515;
+
+      border-color: #3a3a3a;
+
+      color: var(--text);
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer {
+      padding: 25px 0 30px;
+
+      border-top: 1px solid var(--border);
+
+      color: #666;
+
+      text-align: center;
+
+      font-size: 11px;
+
+      line-height: 1.7;
+    }
+
+    .footer strong {
+      color: #aaa;
+    }
+
+    .footer-name {
+      color: #888;
+
+      font-size: 10px;
+
+      letter-spacing: 0.7px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 14px;
+
+      margin-top: 15px;
+    }
+
+    .footer-links a {
+      color: #666;
+
+      font-size: 10px;
+
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: #aaa;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 700px) {
+
+      .app {
+        width: min(100% - 20px, 980px);
+      }
+
+      .header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 18px;
+      }
+
+      .brand {
+        width: 100%;
+      }
+
+      .logo {
+        height: 48px;
+        max-width: 150px;
+      }
+
+      .brand-name {
+        white-space: normal;
+      }
+
+      .back-button {
+        align-self: flex-start;
+      }
+
+      .error-area {
+        padding: 65px 0;
+      }
+
+      .error-code {
+        letter-spacing: -7px;
+      }
+
+      .error-title {
+        letter-spacing: -1px;
+      }
+
+      .error-description {
+        font-size: 13px;
+      }
+
+      .actions {
+        flex-direction: column;
+
+        width: 100%;
+      }
+
+      .button {
+        width: 100%;
+        max-width: 260px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <main class="app">
+
+
+    <!-- ===================================================
+         HEADER
+    =================================================== -->
+
+    <header class="header">
+
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="IAF MultiTools home"
+      >
+
+        <img
+          class="logo"
+          src="asset/iaf-logo.png"
+          alt="Indonesia Advance Future"
+        />
+
+        <div class="brand-info">
+
+          <h1 class="brand-name">
+            INDONESIA ADVANCE FUTURE
+          </h1>
+
+          <p class="brand-subtitle">
+            MULTITOOLS / LOCAL-FIRST
+          </p>
+
+        </div>
+
+      </a>
+
+
+      <a
+        class="back-button"
+        href="index.html"
+        onclick="if (history.length > 1) { history.back(); return false; }"
+      >
+        <span>←</span>
+        Back
+      </a>
+
+    </header>
+
+
+
+    <!-- ===================================================
+         404 CONTENT
+    =================================================== -->
+
+    <section class="error-area">
+
+      <div class="error-content">
+
+        <div class="error-code">
+          404
+        </div>
+
+        <div class="error-label">
+          IAF MULTITOOLS / ERROR
+        </div>
+
+        <h2 class="error-title">
+          Page not found.
+        </h2>
+
+        <p class="error-description">
+          The page you're looking for doesn't exist,
+          has been moved, or may no longer be available.
+        </p>
+
+
+        <div class="actions">
+
+          <a
+            class="button button-primary"
+            href="index.html"
+          >
+            Go Home
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="index.html"
+            onclick="if (history.length > 1) { history.back(); return false; }"
+          >
+            ← Back
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         FOOTER
+    =================================================== -->
+
+    <footer class="footer">
+
+      <strong>
+        IAF MultiTools
+      </strong>
+
+      <br />
+
+      <span class="footer-name">
+        INDONESIA ADVANCE FUTURE
+      </span>
+
+      <br />
+
+      We localize cloud thing for you.
+
+      <div class="footer-links">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="terms.html">
+          Terms
+        </a>
+
+        <a href="#">
+          Privacy
+        </a>
+
+        <a href="#">
+          Disclaimer
+        </a>
+
+      </div>
+
+      <br />
+
+      © 2026 Indonesia Advance Future (IAF).
+      All rights reserved.
+
+    </footer>
+
+
+  </main>
+
+</body>
+</html>
