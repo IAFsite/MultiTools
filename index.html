@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Reddit Story Generator</title>
+  <title>IAF MultiTools — Indonesia Advance Future</title>
 
   <style>
     * {
@@ -15,12 +15,16 @@
       --bg: #090909;
       --panel: #111111;
       --panel-2: #151515;
+      --panel-3: #0d0d0d;
+
       --border: #292929;
+      --border-soft: #202020;
+
       --text: #f2f2f2;
-      --muted: #8e8e8e;
       --soft: #bdbdbd;
-      --accent: #ffffff;
-      --danger: #ff6b6b;
+      --muted: #808080;
+      --dim: #555555;
+
       --success: #78d99a;
     }
 
@@ -31,12 +35,19 @@
     body {
       margin: 0;
       min-height: 100vh;
+
       background: var(--bg);
       color: var(--text);
+
       font-family:
         Arial,
         Helvetica,
         sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     button,
@@ -46,1011 +57,973 @@
       font: inherit;
     }
 
-    button {
-      cursor: pointer;
-    }
-
     .app {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 32px 0 70px;
+
+      padding: 28px 0 70px;
     }
 
-    /* =========================
+
+    /* =====================================================
        HEADER
-    ========================= */
+    ===================================================== */
 
     .header {
       display: flex;
       align-items: center;
-      gap: 18px;
-      padding: 18px 0 30px;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      padding: 12px 0 24px;
+
       border-bottom: 1px solid var(--border);
     }
 
-    .header-logo {
+    .brand {
+      display: flex;
+      align-items: center;
+
+      gap: 16px;
+    }
+
+    .logo {
       width: auto;
-      height: 64px;
-      max-width: 170px;
+      height: 54px;
+
+      max-width: 180px;
+
       object-fit: contain;
+
       display: block;
+
       background: transparent;
       border: none;
-      padding: 0;
       border-radius: 0;
-      flex-shrink: 0;
+
+      padding: 0;
     }
 
-    .header-title {
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+
+      gap: 3px;
+    }
+
+    .brand-name {
       margin: 0;
-      font-size: 30px;
+
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: -1px;
+
+      letter-spacing: 1.2px;
     }
 
-    .header-subtitle {
-      margin: 5px 0 0;
+    .brand-subtitle {
+      margin: 0;
+
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
+
+      font-size: 11px;
     }
 
-    /* =========================
-       SECTIONS
-    ========================= */
+    .header-status {
+      color: var(--muted);
+
+      font-size: 10px;
+
+      font-family: monospace;
+
+      text-align: right;
+
+      line-height: 1.7;
+    }
+
+    .header-status strong {
+      color: var(--success);
+
+      font-weight: 400;
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+      padding: 76px 0 56px;
+
+      max-width: 900px;
+    }
+
+    .hero-label {
+      margin-bottom: 17px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      font-weight: 700;
+
+      letter-spacing: 1.6px;
+
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 0;
+
+      font-size: clamp(43px, 7vw, 78px);
+
+      line-height: 0.94;
+
+      letter-spacing: -4px;
+    }
+
+    .hero-subtitle {
+      max-width: 690px;
+
+      margin: 27px 0 0;
+
+      color: var(--soft);
+
+      font-size: 18px;
+
+      line-height: 1.6;
+    }
+
+    .hero-note {
+      margin: 20px 0 0;
+
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+
+    /* =====================================================
+       INTRO / AD PANEL
+    ===================================================== */
+
+    .intro-panel {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 30px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #121212 0%,
+          #101010 55%,
+          #0d0d0d 100%
+        );
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+    }
+
+    .intro-panel::after {
+      content: "";
+
+      position: absolute;
+
+      width: 240px;
+      height: 240px;
+
+      right: -100px;
+      bottom: -120px;
+
+      border: 1px solid #252525;
+
+      border-radius: 50%;
+
+      pointer-events: none;
+    }
+
+    .intro-label {
+      margin-bottom: 14px;
+
+      color: var(--dim);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    .intro-title {
+      max-width: 700px;
+
+      margin: 0;
+
+      font-size: 27px;
+      line-height: 1.2;
+
+      letter-spacing: -0.7px;
+    }
+
+    .intro-text {
+      max-width: 760px;
+
+      margin: 15px 0 0;
+
+      color: var(--soft);
+
+      font-size: 14px;
+
+      line-height: 1.7;
+    }
+
+    .intro-text strong {
+      color: var(--text);
+    }
+
+    .intro-features {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: 23px;
+    }
+
+    .intro-feature {
+      padding: 7px 10px;
+
+      background: #181818;
+
+      border: 1px solid var(--border);
+
+      border-radius: 7px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+
+      font-family: monospace;
+    }
+
+
+    /* =====================================================
+       SECTION
+    ===================================================== */
 
     .section {
-      margin-top: 26px;
+      margin-top: 48px;
     }
 
     .section-header {
       display: flex;
+      align-items: flex-end;
       justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+
+      gap: 20px;
+
+      margin-bottom: 15px;
     }
 
     .section-title {
       margin: 0;
+
       font-size: 19px;
+
+      letter-spacing: -0.3px;
     }
 
     .section-description {
+      margin: 5px 0 0;
+
       color: var(--muted);
-      font-size: 13px;
-      margin: 4px 0 0;
+
+      font-size: 12px;
+
       line-height: 1.5;
     }
 
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-    }
 
-    /* =========================
-       INFO
-    ========================= */
+    /* =====================================================
+       TOOLS
+    ===================================================== */
 
-    .info-grid {
+    .tool-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 14px;
-      margin-top: 24px;
     }
 
-    .info-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-    }
-
-    .info-card h2 {
-      margin: 0 0 10px;
-      font-size: 16px;
-    }
-
-    .info-card p,
-    .info-card li {
-      color: var(--soft);
-      font-size: 13px;
-      line-height: 1.65;
-    }
-
-    .info-card p {
-      margin: 0;
-    }
-
-    .info-card ul {
-      margin: 0;
-      padding-left: 18px;
-    }
-
-    .notice {
-      margin-top: 14px;
-      padding: 17px 18px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #0d0d0d;
-      color: var(--soft);
-      font-size: 13px;
-      line-height: 1.65;
-    }
-
-    .notice strong {
-      color: var(--text);
-    }
-
-    /* =========================
-       ASSETS
-    ========================= */
-
-    .asset-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .asset {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      background: var(--panel-2);
-    }
-
-    .asset-name {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .asset-status {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .asset-status.ready {
-      color: var(--success);
-    }
-
-    .asset-status.error {
-      color: var(--danger);
-    }
-
-    .asset-status.loading {
-      color: var(--soft);
-    }
-
-    /* =========================
-       FORMS
-    ========================= */
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .field {
+    .tool-card {
       display: flex;
+
       flex-direction: column;
-      gap: 7px;
-    }
 
-    .field.full {
-      grid-column: 1 / -1;
-    }
+      min-height: 250px;
 
-    label {
-      font-size: 12px;
-      color: var(--soft);
-      font-weight: 600;
-    }
+      padding: 23px;
 
-    input,
-    textarea,
-    select {
-      width: 100%;
-      color: var(--text);
-      background: #0b0b0b;
+      background: var(--panel);
+
       border: 1px solid var(--border);
-      border-radius: 10px;
-      outline: none;
-      padding: 12px 13px;
-    }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: #555;
-    }
+      border-radius: 15px;
 
-    textarea {
-      min-height: 270px;
-      resize: vertical;
-      line-height: 1.55;
-    }
-
-    select {
-      cursor: pointer;
-    }
-
-    .template-select {
-      min-height: 46px;
-      border-color: #444;
-      background: #0b0b0b;
-      font-weight: 600;
-    }
-
-    .template-select:hover {
-      border-color: #555;
-    }
-
-    .template-select:focus {
-      border-color: #777;
-    }
-
-    .field-hint {
-      color: #707070;
-      font-size: 11px;
-      line-height: 1.4;
-    }
-
-    /* =========================
-       BUTTONS
-    ========================= */
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    button {
-      border: 1px solid var(--border);
-      background: #181818;
-      color: var(--text);
-      border-radius: 10px;
-      padding: 11px 16px;
-      font-weight: 600;
       transition:
         background 0.15s ease,
         border-color 0.15s ease,
-        opacity 0.15s ease;
+        transform 0.15s ease;
     }
 
-    button:hover {
+    .tool-card:hover {
+      background: var(--panel-2);
+
+      border-color: #444;
+
+      transform: translateY(-2px);
+    }
+
+    .tool-card.disabled {
+      cursor: default;
+    }
+
+    .tool-card.disabled:hover {
+      background: var(--panel);
+
+      border-color: var(--border);
+
+      transform: none;
+    }
+
+    .tool-number {
+      color: var(--dim);
+
+      font-size: 11px;
+
+      font-family: monospace;
+    }
+
+    .tool-status {
+      margin-left: auto;
+
+      color: var(--muted);
+
+      font-size: 9px;
+
+      font-family: monospace;
+
+      letter-spacing: 0.5px;
+    }
+
+    .tool-top {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tool-name {
+      margin: 28px 0 9px;
+
+      font-size: 20px;
+      font-weight: 700;
+
+      letter-spacing: -0.5px;
+    }
+
+    .tool-description {
+      max-width: 470px;
+
+      margin: 0;
+
+      color: var(--soft);
+
+      font-size: 13px;
+
+      line-height: 1.65;
+    }
+
+    .tool-footer {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-top: auto;
+      padding-top: 28px;
+    }
+
+    .tool-meta {
+      color: var(--muted);
+
+      font-size: 10px;
+
+      font-family: monospace;
+
+      letter-spacing: 0.5px;
+    }
+
+    .tool-link {
+      padding: 9px 13px;
+
+      background: #181818;
+
+      border: 1px solid var(--border);
+
+      border-radius: 9px;
+
+      font-size: 12px;
+
+      font-weight: 600;
+
+      white-space: nowrap;
+    }
+
+    .tool-card:hover .tool-link {
       background: #222;
+
       border-color: #444;
     }
 
-    button.primary {
-      background: #f1f1f1;
-      color: #080808;
-      border-color: #f1f1f1;
+    .tool-card.disabled .tool-link {
+      color: var(--dim);
+
+      background: #101010;
     }
 
-    button.primary:hover {
-      background: #ffffff;
-    }
 
-    button:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
+    /* =====================================================
+       TOOL EXPLANATION
+    ===================================================== */
 
-    /* =========================
-       FILE INPUTS
-    ========================= */
-
-    .file-grid {
+    .tool-info-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 14px;
     }
 
-    .file-box {
+    .tool-info {
+      padding: 21px;
+
+      background: var(--panel);
+
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 15px;
-      background: var(--panel-2);
-    }
 
-    .file-box label {
-      display: block;
-      margin-bottom: 9px;
-    }
-
-    /* =========================
-       PREVIEW
-    ========================= */
-
-    .preview-layout {
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .preview-frame {
-      width: 100%;
-      background: #000;
-      border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 8px;
     }
 
-    #previewCanvas {
-      width: 100%;
-      height: auto;
-      display: block;
-      background: #000;
-      border-radius: 8px;
+    .tool-info h3 {
+      margin: 0 0 10px;
+
+      font-size: 15px;
     }
 
-    .status-box {
-      min-height: 120px;
-      background: #0c0c0c;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 15px;
+    .tool-info p {
+      margin: 0;
+
       color: var(--soft);
-      font-size: 13px;
-      line-height: 1.55;
-      white-space: pre-wrap;
-    }
 
-    /* =========================
-       CSV
-    ========================= */
-
-    .csv-help {
-      padding: 13px 14px;
-      margin-bottom: 14px;
-      background: #0c0c0c;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--muted);
       font-size: 12px;
+
+      line-height: 1.7;
+    }
+
+    .tool-info-meta {
+      margin-top: 15px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+
+      font-family: monospace;
+    }
+
+
+    /* =====================================================
+       PHILOSOPHY
+    ===================================================== */
+
+    .philosophy {
+      display: grid;
+
+      grid-template-columns:
+        1.2fr
+        1fr
+        1fr;
+
+      gap: 14px;
+    }
+
+    .philosophy-card {
+      min-height: 190px;
+
+      padding: 22px;
+
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+
+      border-radius: 15px;
+    }
+
+    .philosophy-card h3 {
+      margin: 0 0 12px;
+
+      font-size: 15px;
+    }
+
+    .philosophy-card p {
+      margin: 0;
+
+      color: var(--soft);
+
+      font-size: 13px;
+
+      line-height: 1.7;
+    }
+
+    .philosophy-card p + p {
+      margin-top: 14px;
+    }
+
+
+    /* =====================================================
+       LOCAL FIRST
+    ===================================================== */
+
+    .local-box {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      border-radius: 15px;
+    }
+
+    .local-item {
+      padding: 24px;
+
+      background: var(--panel);
+
+      border-right: 1px solid var(--border);
+    }
+
+    .local-item:last-child {
+      border-right: none;
+    }
+
+    .local-label {
+      color: var(--muted);
+
+      font-size: 10px;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+    }
+
+    .local-value {
+      margin-top: 10px;
+
+      font-size: 16px;
+
+      font-weight: 700;
+    }
+
+    .local-description {
+      margin-top: 7px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+
       line-height: 1.55;
     }
 
-    code {
-      color: var(--text);
-      background: #1a1a1a;
-      border-radius: 5px;
-      padding: 2px 5px;
+
+    /* =====================================================
+       DISCLAIMER
+    ===================================================== */
+
+    .disclaimer {
+      padding: 23px;
+
+      background: var(--panel-3);
+
+      border: 1px solid var(--border);
+
+      border-radius: 14px;
     }
 
-    /* =========================
-       QUEUE
-    ========================= */
+    .disclaimer-title {
+      margin: 0 0 12px;
 
-    .queue-toolbar {
+      font-size: 14px;
+    }
+
+    .disclaimer p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.75;
+    }
+
+    .disclaimer p + p {
+      margin-top: 12px;
+    }
+
+    .disclaimer strong {
+      color: var(--soft);
+    }
+
+
+    /* =====================================================
+       STATUS
+    ===================================================== */
+
+    .status-panel {
+      padding: 20px;
+
+      background: #0d0d0d;
+
+      border: 1px solid var(--border);
+
+      border-radius: 15px;
+    }
+
+    .status-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
-    }
 
-    .queue-count {
-      color: var(--muted);
+      padding: 12px 0;
+
+      border-bottom: 1px solid #1d1d1d;
+
       font-size: 12px;
     }
 
-    #queueBody {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .status-row:last-child {
+      border-bottom: none;
     }
 
-    .queue-item {
-      display: grid;
-      grid-template-columns: 38px 1fr;
-      gap: 12px;
-      align-items: center;
-      border: 1px solid var(--border);
-      background: var(--panel-2);
-      border-radius: 11px;
-      padding: 11px 13px;
-      cursor: pointer;
+    .status-name {
+      color: var(--soft);
     }
 
-    .queue-item:hover {
-      border-color: #444;
-    }
+    .status-value {
+      color: var(--success);
 
-    .queue-item.selected {
-      border-color: #777;
-      background: #191919;
-    }
+      font-family: monospace;
 
-    .queue-index {
-      color: var(--muted);
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .queue-title {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .queue-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 5px;
-      color: var(--muted);
       font-size: 11px;
     }
 
-    .empty-queue {
-      color: var(--muted);
-      border: 1px dashed var(--border);
-      border-radius: 11px;
-      padding: 22px;
-      text-align: center;
-      font-size: 13px;
-    }
 
-    /* =========================
+    /* =====================================================
        FOOTER
-    ========================= */
+    ===================================================== */
 
     .footer {
-      margin-top: 45px;
-      padding-top: 20px;
+      margin-top: 70px;
+
+      padding-top: 24px;
+
       border-top: 1px solid var(--border);
+
       color: #666;
+
       text-align: center;
+
       font-size: 11px;
-      line-height: 1.6;
+
+      line-height: 1.7;
     }
 
     .footer strong {
       color: #aaa;
     }
 
-    /* =========================
+    .footer-name {
+      color: #888;
+
+      font-size: 10px;
+
+      letter-spacing: 0.7px;
+    }
+
+
+    /* =====================================================
        RESPONSIVE
-    ========================= */
+    ===================================================== */
 
     @media (max-width: 850px) {
-      .info-grid {
+
+      .tool-grid {
         grid-template-columns: 1fr;
       }
 
-      .asset-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .preview-layout {
+      .tool-info-grid {
         grid-template-columns: 1fr;
       }
 
-      .preview-frame {
-        max-width: 360px;
+      .philosophy {
+        grid-template-columns: 1fr;
+      }
+
+      .local-box {
+        grid-template-columns: 1fr;
+      }
+
+      .local-item {
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .local-item:last-child {
+        border-bottom: none;
       }
     }
 
-    @media (max-width: 650px) {
+
+    @media (max-width: 600px) {
+
       .app {
         width: min(100% - 20px, 1180px);
+
         padding-top: 18px;
       }
 
       .header {
         align-items: flex-start;
+
+        flex-direction: column;
       }
 
-      .header-logo {
-        height: 52px;
-        max-width: 125px;
+      .header-status {
+        text-align: left;
       }
 
-      .header-title {
-        font-size: 23px;
+      .logo {
+        height: 48px;
+
+        max-width: 150px;
       }
 
-      .header-subtitle {
-        font-size: 12px;
+      .hero {
+        padding-top: 55px;
       }
 
-      .form-grid,
-      .file-grid {
-        grid-template-columns: 1fr;
+      .hero-title {
+        letter-spacing: -2.5px;
       }
 
-      .field.full {
-        grid-column: auto;
+      .hero-subtitle {
+        font-size: 15px;
       }
 
-      .asset-grid {
-        grid-template-columns: 1fr;
+      .intro-panel {
+        padding: 22px;
       }
 
-      .queue-toolbar {
+      .intro-title {
+        font-size: 22px;
+      }
+
+      .tool-card {
+        min-height: 220px;
+      }
+
+      .tool-footer {
         align-items: flex-start;
+
         flex-direction: column;
       }
     }
   </style>
 </head>
 
-<script>
-(() => {
-  const templates = {
-    "little-brother": {
-      title: "My little brother keeps asking me why I keep leaving my room at night.",
-      narration: `My little brother keeps asking me why I keep leaving my room at night.
-
-My little brother asked me something weird yesterday.
-
-"Why do you keep leaving your room at 3 AM?"
-
-I laughed.
-
-"I don't."
-
-He looked confused.
-
-"Yes, you do."
-
-I asked him what he saw.
-
-He said every night, my bedroom door opens.
-
-Then I walk downstairs.
-
-I stand in the kitchen for a few minutes.
-
-Then I come back upstairs.
-
-I thought he was dreaming.
-
-Until last night.
-
-At 3:07 AM, I heard my bedroom door open.
-
-I stayed completely still.
-
-Footsteps walked down the hallway.
-
-Then downstairs.
-
-I grabbed my phone and checked the time.
-
-3:08 AM.
-
-I heard the kitchen cabinet open.
-
-Then silence.
-
-A few minutes later, footsteps came back upstairs.
-
-They stopped outside my door.
-
-Then my door slowly opened.
-
-I expected to see myself.
-
-Instead, I saw my little brother standing there.
-
-He looked terrified.
-
-He whispered:
-
-"Don't look behind you."
-
-I slowly turned around.
-
-My closet door was open.
-
-Something was standing inside.
-
-Wearing my clothes.
-
-My brother grabbed my hand.
-
-Then my phone buzzed.
-
-A message from my own number appeared.
-
-"Don't let him wake up."
-
-I looked at my brother.
-
-He smiled.
-
-Then he whispered:
-
-"You finally noticed."`
-    },
-
-    "security-camera": {
-      title: "My dad installed a camera in my room, but he refuses to tell me why.",
-      narration: `My dad installed a camera in my room, but he refuses to tell me why.
-
-My dad gave me a new security camera last week.
-
-He said it was for safety.
-
-I installed it above my desk.
-
-Nothing unusual happened.
-
-Until yesterday.
-
-I was looking through the recordings when I noticed something strange.
-
-At exactly 2:14 AM, the camera showed me sitting on my bed.
-
-But I was asleep.
-
-I watched the video again.
-
-There I was.
-
-Sitting completely still.
-
-Staring directly into the camera.
-
-I called my dad.
-
-"Dad, why is there a recording of me awake last night?"
-
-He went silent.
-
-Then he asked:
-
-"Are you sure that's you?"
-
-I sent him the video.
-
-He immediately called me back.
-
-"Turn the camera off."
-
-I asked why.
-
-He said:
-
-"Because we removed that camera six months ago."
-
-I looked up.
-
-The camera was still above my desk.
-
-Then the recording suddenly updated.
-
-A new video appeared.
-
-It showed my bedroom.
-
-Except this time, I wasn't in it.
-
-Someone was standing behind the camera.
-
-Then they whispered:
-
-"Your dad knows."
-
-My phone buzzed.
-
-Dad had sent me one message.
-
-"Do not come home."
-
-I looked at my bedroom door.
-
-It was slowly opening.`
-    },
-
-    "dead-neighbor": {
-      title: "My neighbor knocks on my door every morning, but he died last month.",
-      narration: `My neighbor knocks on my door every morning, but he died last month.
-
-Every morning at 7 AM, someone knocks on my door.
-
-Three knocks.
-
-Always exactly three.
-
-I never answered because I assumed it was my neighbor.
-
-He used to do that every morning.
-
-Yesterday I finally opened the door.
-
-Nobody was there.
-
-I looked across the street.
-
-My neighbor's house was empty.
-
-Then I remembered.
-
-He died last month.
-
-I went back inside and checked my security camera.
-
-The footage showed him standing at my door.
-
-Same clothes.
-
-Same face.
-
-Same three knocks.
-
-I called his daughter.
-
-She started crying when I told her.
-
-Then she asked:
-
-"Did he say anything?"
-
-I said no.
-
-She went quiet.
-
-"That's strange."
-
-I asked why.
-
-She said:
-
-"My dad couldn't knock."
-
-"His hands were missing."
-
-I froze.
-
-That morning, the knocking happened again.
-
-Three knocks.
-
-This time, I heard a voice.
-
-"Open the door."
-
-I looked through the peephole.
-
-My neighbor was standing outside.
-
-Then he smiled.
-
-And pointed behind me.
-
-I turned around.
-
-Someone was standing in my hallway.
-
-Wearing the exact same clothes.`
-    },
-
-    "future-texts": {
-      title: "My phone keeps receiving texts from me 10 minutes in the future.",
-      narration: `My phone keeps receiving texts from me 10 minutes in the future.
-
-The first message said:
-
-"Don't leave your room."
-
-I thought it was a glitch.
-
-Then another message arrived.
-
-"Your mom is about to knock."
-
-Ten seconds later, someone knocked.
-
-It was Mom.
-
-I asked her if she had texted me.
-
-She said no.
-
-Another message appeared.
-
-"Don't open the door."
-
-I looked at Mom.
-
-She was still knocking.
-
-"Open up."
-
-I didn't.
-
-Then my phone buzzed again.
-
-"Good. Now hide."
-
-I asked who was texting me.
-
-The reply came instantly.
-
-"Me."
-
-I typed:
-
-"Who is me?"
-
-Three dots appeared.
-
-Then:
-
-"You."
-
-I laughed nervously.
-
-Then another message appeared.
-
-"Whatever happens, don't look through the window."
-
-I heard something outside.
-
-I looked anyway.
-
-There was someone standing in the backyard.
-
-It looked exactly like me.
-
-My phone buzzed one last time.
-
-"Why did you look?"
-
-I stared at the window.
-
-The person outside slowly raised their phone.
-
-Mine buzzed again.
-
-The message said:
-
-"I'm not outside anymore."`
-    }
-  };
-
-  function initStoryTemplate() {
-    const select = document.getElementById("storyTemplate");
-    const title = document.getElementById("titleInput");
-    const narration = document.getElementById("narrationInput");
-    const credit = document.getElementById("creditInput");
-
-    if (!select || !title || !narration) {
-      console.error(
-        "[Story Template] Missing required elements:",
-        {
-          storyTemplate: !!select,
-          titleInput: !!title,
-          narrationInput: !!narration
-        }
-      );
-      return;
-    }
-
-    select.addEventListener("change", () => {
-      const template = templates[select.value];
-
-      // Placeholder selected
-      if (!template) return;
-
-      // Fill title
-      title.value = template.title;
-
-      // Fill narration
-      // The title is already included as the first line.
-      narration.value = template.narration;
-
-      // Template selection clears REG-ID / credit
-      if (credit) {
-        credit.value = "";
-      }
-
-      // Tell the rest of the UI that values changed
-      title.dispatchEvent(
-        new Event("input", { bubbles: true })
-      );
-
-      narration.dispatchEvent(
-        new Event("input", { bubbles: true })
-      );
-
-      if (credit) {
-        credit.dispatchEvent(
-          new Event("input", { bubbles: true })
-        );
-      }
-
-      // Update preview if available
-      if (typeof window.drawPreview === "function") {
-        try {
-          window.drawPreview();
-        } catch (e) {
-          console.warn(
-            "[Story Template] Preview update failed:",
-            e
-          );
-        }
-      }
-
-      // Update status if available
-      if (typeof window.setStatus === "function") {
-        try {
-          window.setStatus(
-            "Loaded story template: " + template.title
-          );
-        } catch (e) {}
-      }
-
-      console.log(
-        "[Story Template] Loaded:",
-        select.value
-      );
-    });
-
-    console.log(
-      "[Story Template] Handler initialized successfully."
-    );
-  }
-
-  // Works whether this script is loaded before or after DOM is ready
-  if (document.readyState === "loading") {
-    document.addEventListener(
-      "DOMContentLoaded",
-      initStoryTemplate,
-      { once: true }
-    );
-  } else {
-    initStoryTemplate();
-  }
-})();
-</script>
 
 <body>
 
   <main class="app">
 
-    <!-- =========================
+
+    <!-- ===================================================
          HEADER
-    ========================= -->
+    =================================================== -->
 
     <header class="header">
 
-      <img
-        id="logoLoader"
-        class="header-logo"
-        src="iaf-logo.png"
-        alt="Reddit Story Generator"
-      />
+      <div class="brand">
 
-      <div class="header-text">
+        <!--
+          PLACEHOLDER LOGO
 
-        <h1 class="header-title">
-          Reddit Story Generator
-        </h1>
+          Replace this with your actual IAF logo file.
+          Example:
+          src="iaf-logo.png"
+        -->
 
-        <p class="header-subtitle">
-          Free, local, unlimited Reddit-style story video generation.
-        </p>
+        <img
+          class="logo"
+          src="iaf-logo.png"
+          alt="Indonesia Advance Future"
+        />
+
+        <div class="brand-info">
+
+          <h1 class="brand-name">
+            INDONESIA ADVANCE FUTURE
+          </h1>
+
+          <p class="brand-subtitle">
+            MULTITOOLS / LOCAL-FIRST
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="header-status">
+
+        SYSTEM
+
+        <br />
+
+        <strong>
+          ● OPERATIONAL
+        </strong>
 
       </div>
 
     </header>
 
 
-    <!-- =========================
-         BEFORE YOU START
-    ========================= -->
+
+    <!-- ===================================================
+         HERO
+    =================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-label">
+        IAF MULTITOOLS
+      </div>
+
+      <h2 class="hero-title">
+        We localize<br />
+        cloud thing<br />
+        for you.
+      </h2>
+
+      <p class="hero-subtitle">
+        A collection of free, local-first tools
+        designed to move simple workloads away
+        from unnecessary cloud processing.
+      </p>
+
+      <p class="hero-note">
+        Your device does the work.
+      </p>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         INTRO / ADVERTISEMENT
+    =================================================== -->
+
+    <section class="intro-panel">
+
+      <div class="intro-label">
+        WHY IAF MULTITOOLS EXISTS
+      </div>
+
+      <h2 class="intro-title">
+        Why pay for a cloud server when your
+        own computer can do the job?
+      </h2>
+
+      <p class="intro-text">
+
+        A lot of modern tools send relatively simple
+        workloads to remote servers.
+
+        <strong>
+          That can mean subscriptions, credits,
+          generation limits, queues, and unnecessary
+          data transfers.
+        </strong>
+
+        <br />
+        <br />
+
+        IAF MultiTools is our attempt to solve that
+        problem by bringing those workloads closer
+        to the user whenever practical.
+
+        Instead of automatically sending everything
+        to the cloud, we look for ways to let
+        your own hardware handle the work.
+
+      </p>
+
+
+      <div class="intro-features">
+
+        <span class="intro-feature">
+          LOCAL-FIRST
+        </span>
+
+        <span class="intro-feature">
+          FREE TO USE
+        </span>
+
+        <span class="intro-feature">
+          NO ARTIFICIAL CREDITS
+        </span>
+
+        <span class="intro-feature">
+          NO GENERATION COUNTER
+        </span>
+
+        <span class="intro-feature">
+          YOUR HARDWARE
+        </span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         TOOLS
+    =================================================== -->
 
     <section class="section">
 
@@ -1059,11 +1032,12 @@ The message said:
         <div>
 
           <h2 class="section-title">
-            Before You Start
+            Tools
           </h2>
 
           <p class="section-description">
-            Everything you need to know before generating your first video.
+            Things you can run without handing the workload
+            to an expensive cloud service.
           </p>
 
         </div>
@@ -1071,637 +1045,554 @@ The message said:
       </div>
 
 
-      <div class="info-grid">
+      <div class="tool-grid">
 
-        <!-- HOW IT WORKS -->
 
-        <div class="info-card">
+        <!-- TOOL 01 -->
 
-          <h2>
-            How It Works
+        <a
+          class="tool-card"
+          href="#"
+        >
+
+          <div class="tool-top">
+
+            <span class="tool-number">
+              01
+            </span>
+
+            <span class="tool-status">
+              AVAILABLE
+            </span>
+
+          </div>
+
+
+          <h3 class="tool-name">
+            Reddit Story Generator
+          </h3>
+
+
+          <p class="tool-description">
+
+            Generate Reddit-style story videos
+            using local narration, subtitles,
+            background media, and rendering.
+
+          </p>
+
+
+          <div class="tool-footer">
+
+            <span class="tool-meta">
+              LOCAL · FREE · UNLIMITED
+            </span>
+
+            <span class="tool-link">
+              Try Tool →
+            </span>
+
+          </div>
+
+        </a>
+
+
+
+        <!-- TOOL 02 -->
+
+        <a
+          class="tool-card"
+          href="#"
+        >
+
+          <div class="tool-top">
+
+            <span class="tool-number">
+              02
+            </span>
+
+            <span class="tool-status">
+              AVAILABLE
+            </span>
+
+          </div>
+
+
+          <h3 class="tool-name">
+            Text to Speech
+          </h3>
+
+
+          <p class="tool-description">
+
+            Convert text into speech locally
+            instead of sending every sentence
+            to a paid external TTS service.
+
+          </p>
+
+
+          <div class="tool-footer">
+
+            <span class="tool-meta">
+              LOCAL · FREE
+            </span>
+
+            <span class="tool-link">
+              Try Tool →
+            </span>
+
+          </div>
+
+        </a>
+
+
+
+        <!-- TOOL 03 -->
+
+        <a
+          class="tool-card disabled"
+          href="#"
+          onclick="return false;"
+        >
+
+          <div class="tool-top">
+
+            <span class="tool-number">
+              03
+            </span>
+
+            <span class="tool-status">
+              IN DEVELOPMENT
+            </span>
+
+          </div>
+
+
+          <h3 class="tool-name">
+            Coming Soon
+          </h3>
+
+
+          <p class="tool-description">
+
+            Another tool waiting to be
+            localized from the cloud.
+
+          </p>
+
+
+          <div class="tool-footer">
+
+            <span class="tool-meta">
+              NOT AVAILABLE YET
+            </span>
+
+            <span class="tool-link">
+              —
+            </span>
+
+          </div>
+
+        </a>
+
+
+
+        <!-- TOOL 04 -->
+
+        <a
+          class="tool-card disabled"
+          href="#"
+          onclick="return false;"
+        >
+
+          <div class="tool-top">
+
+            <span class="tool-number">
+              04
+            </span>
+
+            <span class="tool-status">
+              IN DEVELOPMENT
+            </span>
+
+          </div>
+
+
+          <h3 class="tool-name">
+            Coming Soon
+          </h3>
+
+
+          <p class="tool-description">
+
+            More small utilities for
+            everyday content workflows.
+
+          </p>
+
+
+          <div class="tool-footer">
+
+            <span class="tool-meta">
+              NOT AVAILABLE YET
+            </span>
+
+            <span class="tool-link">
+              —
+            </span>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         TOOL EXPLANATION
+    =================================================== -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            What These Tools Do
           </h2>
 
-          <ul>
+          <p class="section-description">
+            Simple explanation before you start using them.
+          </p>
 
-            <li>
-              Write your own Reddit-style story or choose a template.
-            </li>
+        </div>
 
-            <li>
-              Choose your voice, speed, and subtitle settings.
-            </li>
+      </div>
 
-            <li>
-              Kokoro generates the narration locally.
-            </li>
 
-            <li>
-              Your story is rendered into a vertical video.
-            </li>
+      <div class="tool-info-grid">
 
-            <li>
-              The finished video is downloaded directly to your device.
-            </li>
 
-          </ul>
+        <div class="tool-info">
+
+          <h3>
+            Reddit Story Generator
+          </h3>
+
+          <p>
+
+            Designed for creators who want to turn
+            Reddit-style stories into vertical videos.
+
+            Write a story, choose narration settings,
+            configure subtitles and assets, then
+            generate the video on your own device.
+
+          </p>
+
+          <div class="tool-info-meta">
+            VIDEO · TTS · SUBTITLES · LOCAL RENDERING
+          </div>
 
         </div>
 
 
-        <!-- FREE -->
+        <div class="tool-info">
 
-        <div class="info-card">
-
-          <h2>
-            Free & Unlimited
-          </h2>
+          <h3>
+            Text to Speech
+          </h3>
 
           <p>
-            Reddit Story Generator is free to use.
-            There is no daily, monthly, or per-video generation limit.
+
+            A local-first text-to-speech utility
+            for generating narration without
+            requiring a paid cloud TTS API
+            for every generation.
+
           </p>
 
-          <br />
+          <div class="tool-info-meta">
+            TEXT · SPEECH · LOCAL PROCESSING
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         PHILOSOPHY
+    =================================================== -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            The Idea
+          </h2>
+
+          <p class="section-description">
+            Why we prefer local processing when possible.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="philosophy">
+
+
+        <div class="philosophy-card">
+
+          <h3>
+            Cloud isn't always necessary.
+          </h3>
 
           <p>
-            Generate as many videos as you want.
-            Your only practical limitation is the performance
-            and storage capacity of your own device.
+
+            Cloud infrastructure is useful,
+            but not every task needs a remote
+            server to function.
+
+          </p>
+
+          <p>
+
+            If a workload can reasonably run
+            on your own hardware, why not let
+            your hardware do it?
+
           </p>
 
         </div>
 
 
-        <!-- LOCAL -->
+        <div class="philosophy-card">
 
-        <div class="info-card">
+          <h3>
+            No artificial limits.
+          </h3>
 
-          <h2>
+          <p>
+
+            Local processing doesn't need a
+            credit counter for every generation.
+
+            Your practical limit is generally
+            the hardware, storage, and time
+            available on your own device.
+
+          </p>
+
+        </div>
+
+
+        <div class="philosophy-card">
+
+          <h3>
+            More control.
+          </h3>
+
+          <p>
+
+            Keeping processing closer to the
+            user can reduce unnecessary uploads,
+            external dependencies, and recurring
+            service costs.
+
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         LOCAL FIRST
+    =================================================== -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            Local First
+          </h2>
+
+          <p class="section-description">
+            Where the work happens.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="local-box">
+
+
+        <div class="local-item">
+
+          <div class="local-label">
+            Processing
+          </div>
+
+          <div class="local-value">
+            Your Device
+          </div>
+
+          <div class="local-description">
+
+            CPU, GPU, browser, RAM,
+            and available storage handle
+            the workload where supported.
+
+          </div>
+
+        </div>
+
+
+        <div class="local-item">
+
+          <div class="local-label">
+            Data
+          </div>
+
+          <div class="local-value">
+            Your Device
+          </div>
+
+          <div class="local-description">
+
+            Local tools are designed to avoid
+            unnecessary uploads to an IAF
+            processing server.
+
+          </div>
+
+        </div>
+
+
+        <div class="local-item">
+
+          <div class="local-label">
+            Cost
+          </div>
+
+          <div class="local-value">
+            Free
+          </div>
+
+          <div class="local-description">
+
+            No pay-per-generation system
+            for the basic local tools.
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         ENVIRONMENT
+    =================================================== -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            Environment
+          </h2>
+
+          <p class="section-description">
+            Current MultiTools environment.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="status-panel">
+
+
+        <div class="status-row">
+
+          <span class="status-name">
+            Website
+          </span>
+
+          <span class="status-value">
+            ONLINE
+          </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+          <span class="status-name">
             Local Processing
-          </h2>
+          </span>
 
-          <p>
-            Video generation runs locally on your own device.
-            Your story, narration, and rendering process do not need
-            to be uploaded to a Reddit Story Generator server.
-          </p>
-
-          <br />
-
-          <p>
-            Processing speed depends on your device.
-            Faster hardware generally means faster generation,
-            while slower devices may take longer.
-          </p>
+          <span class="status-value">
+            SUPPORTED
+          </span>
 
         </div>
 
-      </div>
 
+        <div class="status-row">
 
-      <!-- NOTICE -->
+          <span class="status-name">
+            Account Required
+          </span>
 
-      <div class="notice">
-
-        <strong>
-          Processing speed:
-        </strong>
-
-        Generation time depends on your CPU, GPU, RAM, browser,
-        storage speed, and overall system performance.
-        This tool does not guarantee a specific processing time.
-
-        <br />
-        <br />
-
-        <strong>
-          Watermark policy:
-        </strong>
-
-        Generated videos include
-        <strong>
-          “made with shortvid.indoadvfuture.com”
-        </strong>
-        as a watermark.
-
-        Please do not remove, crop out, cover, or intentionally
-        obscure the watermark.
-
-        The watermark helps people discover the generator and
-        supports the maintenance and continued development
-        of this free tool.
-
-        <br />
-        <br />
-
-        <strong>
-          Terms & EULA:
-        </strong>
-
-        You are responsible for the content you generate.
-        Respect copyright, privacy, intellectual property,
-        and the rules of the platforms where you publish your videos.
-
-        The software is provided as-is and may change over time.
-
-        By using Reddit Story Generator, you agree to these basic terms.
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         ASSETS
-    ========================= -->
-
-    <section class="section">
-
-      <div class="section-header">
-
-        <div>
-
-          <h2 class="section-title">
-            Assets
-          </h2>
-
-          <p class="section-description">
-            Default assets used when generating the video.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="panel">
-
-        <div class="asset-grid">
-
-          <div class="asset">
-
-            <div class="asset-name">
-              Logo
-            </div>
-
-            <div
-              id="logoStatus"
-              class="asset-status"
-            >
-              Loading...
-            </div>
-
-          </div>
-
-
-          <div class="asset">
-
-            <div class="asset-name">
-              Background Video
-            </div>
-
-            <div
-              id="videoStatus"
-              class="asset-status"
-            >
-              Loading...
-            </div>
-
-          </div>
-
-
-          <div class="asset">
-
-            <div class="asset-name">
-              Background Audio
-            </div>
-
-            <div
-              id="audioStatus"
-              class="asset-status"
-            >
-              Loading...
-            </div>
-
-          </div>
-
-
-          <div class="asset">
-
-            <div class="asset-name">
-              End Screen
-            </div>
-
-            <div
-              id="endStatus"
-              class="asset-status"
-            >
-              Loading...
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         CUSTOM ASSETS
-    ========================= -->
-
-    <section class="section">
-
-      <div class="section-header">
-
-        <div>
-
-          <h2 class="section-title">
-            Custom Assets
-          </h2>
-
-          <p class="section-description">
-            Optional. Replace the default background video or audio.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="panel">
-
-        <div class="file-grid">
-
-          <div class="file-box">
-
-            <label for="customVideo">
-              Custom Background Video
-            </label>
-
-            <input
-              id="customVideo"
-              type="file"
-              accept="video/*"
-            />
-
-          </div>
-
-
-          <div class="file-box">
-
-            <label for="customAudio">
-              Custom Background Audio
-            </label>
-
-            <input
-              id="customAudio"
-              type="file"
-              accept="audio/*"
-            />
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         MANUAL MODE
-    ========================= -->
-
-    <section class="section">
-
-      <div class="section-header">
-
-        <div>
-
-          <h2 class="section-title">
-            Manual Mode
-          </h2>
-
-          <p class="section-description">
-            Create one Reddit story video manually.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="panel">
-
-        <div class="form-grid">
-
-
-          <!-- STORY TEMPLATE -->
-
-          <div class="field full">
-
-            <label for="storyTemplate">
-              Story Template (if you need one)
-            </label>
-
-            <select
-              id="storyTemplate"
-              class="template-select"
-            >
-
-              <option value="">
-                Select a story template...
-              </option>
-
-              <option value="little-brother">
-                My little brother keeps asking me why I keep leaving my room at night.
-              </option>
-
-              <option value="security-camera">
-                My dad installed a camera in my room, but he refuses to tell me why.
-              </option>
-
-              <option value="dead-neighbor">
-                My neighbor knocks on my door every morning, but he died last month.
-              </option>
-
-              <option value="future-texts">
-                My phone keeps receiving texts from me 10 minutes in the future.
-              </option>
-
-            </select>
-
-            <div class="field-hint">
-              Select a template to automatically fill the title and narration.
-              You can edit both after loading the template.
-            </div>
-
-          </div>
-
-
-          <!-- TITLE -->
-
-          <div class="field full">
-
-            <label for="titleInput">
-              Title
-            </label>
-
-            <input
-              id="titleInput"
-              type="text"
-              placeholder="e.g. I accidentally became the CEO ..."
-            />
-
-          </div>
-
-
-          <!-- CREDIT -->
-
-          <div class="field">
-
-            <label for="creditInput">
-              Your account name (opsional)
-            </label>
-
-            <input
-              id="creditInput"
-              type="text"
-              placeholder="e.g. @reditstory..."
-            />
-
-          </div>
-
-
-          <!-- VOICE -->
-
-          <div class="field">
-
-            <label for="voiceInput">
-              Voice
-            </label>
-
-            <input
-              id="voiceInput"
-              type="text"
-              value="af_heart"
-              placeholder="Kokoro voice"
-            />
-
-          </div>
-
-
-          <!-- SPEED -->
-
-          <div class="field">
-
-            <label for="speedInput">
-              Speed
-            </label>
-
-            <input
-              id="speedInput"
-              type="number"
-              value="1"
-              min="0.1"
-              max="3"
-              step="0.05"
-            />
-
-          </div>
-
-
-          <!-- SUBTITLES -->
-
-          <div class="field">
-
-            <label for="subtitlesInput">
-              Subtitles
-            </label>
-
-            <select id="subtitlesInput">
-
-              <option value="true">
-                Enabled
-              </option>
-
-              <option value="false">
-                Disabled
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <!-- NARRATION -->
-
-          <div class="field full">
-
-            <label for="narrationInput">
-              Narration
-            </label>
-
-            <textarea
-              id="narrationInput"
-              placeholder="Enter the narration here..."
-            ></textarea>
-
-            <div class="field-hint">
-              Story templates automatically include the title as
-              the first line of the narration.
-            </div>
-
-          </div>
-
+          <span class="status-value">
+            NO
+          </span>
 
         </div>
 
 
-        <div class="button-row">
+        <div class="status-row">
 
-          <button
-            id="generateBtn"
-            class="primary"
-          >
-            Generate Video
-          </button>
+          <span class="status-name">
+            Subscription
+          </span>
 
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PREVIEW
-    ========================= -->
-
-    <section class="section">
-
-      <div class="section-header">
-
-        <div>
-
-          <h2 class="section-title">
-            Preview
-          </h2>
-
-          <p class="section-description">
-            Live preview of the generated video layout.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="panel">
-
-        <div class="preview-layout">
-
-
-          <div class="preview-frame">
-
-            <canvas
-              id="previewCanvas"
-              width="1080"
-              height="1920"
-            ></canvas>
-
-          </div>
-
-
-          <div>
-
-            <div class="status-box">
-
-              <span id="statusText">
-                Initializing...
-              </span>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         CSV QUEUE
-    ========================= -->
-
-    <section class="section">
-
-      <div class="section-header">
-
-        <div>
-
-          <h2 class="section-title">
-            CSV Queue
-          </h2>
-
-          <p class="section-description">
-            Load multiple stories and generate them sequentially.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="panel">
-
-
-        <div class="csv-help">
-
-          CSV format:
-
-          <code>
-            title,credit,narration,voice,speed,subtitles
-          </code>
-
-          <br />
-
-          Narration containing commas should be enclosed
-          in quotation marks.
-
-        </div>
-
-
-        <div class="file-box">
-
-          <label for="csvInput">
-            CSV File
-          </label>
-
-          <input
-            id="csvInput"
-            type="file"
-            accept=".csv,text/csv"
-          />
-
-        </div>
-
-
-        <div class="button-row">
-
-          <button id="copyHeaderBtn">
-            Copy CSV Header
-          </button>
-
-          <button id="clearQueueBtn">
-            Clear Queue
-          </button>
+          <span class="status-value">
+            NO
+          </span>
 
         </div>
 
@@ -1711,9 +1602,10 @@ The message said:
     </section>
 
 
-    <!-- =========================
-         QUEUE
-    ========================= -->
+
+    <!-- ===================================================
+         DISCLAIMER
+    =================================================== -->
 
     <section class="section">
 
@@ -1722,73 +1614,81 @@ The message said:
         <div>
 
           <h2 class="section-title">
-            Queue
+            Disclaimer
           </h2>
 
           <p class="section-description">
-            Select an item to load or generate it.
+            Please understand how these tools work.
           </p>
 
         </div>
 
+      </div>
 
-        <div class="queue-count">
 
-          Items:
+      <div class="disclaimer">
 
-          <strong id="queueCount">
-            0
+
+        <h3 class="disclaimer-title">
+          Important Information
+        </h3>
+
+
+        <p>
+
+          <strong>
+            Local-first does not necessarily mean
+            completely offline.
           </strong>
 
-        </div>
+          Some tools may require an internet connection
+          for downloading models, loading assets,
+          checking updates, or using optional online
+          functionality.
 
-      </div>
-
-
-      <div class="panel">
-
-
-        <div class="queue-toolbar">
+        </p>
 
 
-          <div class="queue-count">
-            Click a story to select it.
-          </div>
+        <p>
+
+          Processing behavior can differ between tools.
+          Each individual tool should explain whether
+          your data stays on your device or whether
+          an external service is involved.
+
+        </p>
 
 
-          <div
-            class="button-row"
-            style="margin-top: 0;"
-          >
+        <p>
 
-            <button id="loadSelectedBtn">
-              Load Selected
-            </button>
+          <strong>
+            Performance depends on your hardware.
+          </strong>
 
-            <button id="generateSelectedBtn">
-              Generate Selected
-            </button>
+          CPU, GPU, RAM, browser capabilities,
+          storage speed, thermals, and the size of
+          the workload can all affect processing time.
 
-            <button
-              id="generateAllBtn"
-              class="primary"
-            >
-              Generate All
-            </button>
-
-          </div>
+        </p>
 
 
-        </div>
+        <p>
+
+          IAF MultiTools is provided as-is.
+          Generated content is your responsibility.
+          Respect copyright, privacy, intellectual
+          property, platform rules, and applicable laws.
+
+        </p>
 
 
-        <div id="queueBody">
+        <p>
 
-          <div class="empty-queue">
-            No CSV loaded.
-          </div>
+          IAF does not guarantee that every tool will
+          remain available, compatible with every device,
+          or perform at a specific speed.
 
-        </div>
+        </p>
 
 
       </div>
@@ -1796,65 +1696,36 @@ The message said:
     </section>
 
 
-    <!-- =========================
+
+    <!-- ===================================================
          FOOTER
-    ========================= -->
+    =================================================== -->
 
     <footer class="footer">
 
       <strong>
-        Reddit Story Generator
+        IAF MultiTools
       </strong>
 
       <br />
 
-      Free and unlimited local browser-based
-      Reddit story video generation.
+      <span class="footer-name">
+        INDONESIA ADVANCE FUTURE
+      </span>
+
+      <br />
+      <br />
+
+      We localize cloud thing for you.
 
       <br />
 
-      Processing speed depends on your device.
-
-      <br />
-
-      Please keep the generated watermark intact.
-      It helps support the continued development
-      and maintenance of this free tool.
+      Local-first tools for unnecessary cloud workloads.
 
     </footer>
 
+
   </main>
-
-
-  <!-- =========================
-       HIDDEN ASSET LOADERS
-  ========================= -->
-
-  <video
-    id="bgLoader"
-    src="bg.mp4"
-    preload="auto"
-    muted
-    loop
-    playsinline
-    style="display: none;"
-  ></video>
-
-
-  <img
-    id="endLoader"
-    src="end.png"
-    alt=""
-    style="display: none;"
-  />
-
-
-  <!-- =========================
-       SCRIPTS
-  ========================= -->
-
-  <script src="video-generator.js"></script>
-  <script src="ui.js"></script>
 
 </body>
 </html>

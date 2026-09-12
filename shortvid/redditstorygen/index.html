@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Reddit Story Generator</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #090909;
+      --panel: #111111;
+      --panel-2: #151515;
+      --border: #292929;
+      --text: #f2f2f2;
+      --muted: #8e8e8e;
+      --soft: #bdbdbd;
+      --accent: #ffffff;
+      --danger: #ff6b6b;
+      --success: #78d99a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 70px;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 0 30px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-logo {
+      width: auto;
+      height: 64px;
+      max-width: 170px;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+      border: none;
+      padding: 0;
+      border-radius: 0;
+      flex-shrink: 0;
+    }
+
+    .header-title {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .header-subtitle {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    .section {
+      margin-top: 26px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 19px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 4px 0 0;
+      line-height: 1.5;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    /* =========================
+       INFO
+    ========================= */
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .info-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .info-card h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .info-card p,
+    .info-card li {
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .info-card p {
+      margin: 0;
+    }
+
+    .info-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .notice {
+      margin-top: 14px;
+      padding: 17px 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #0d0d0d;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .notice strong {
+      color: var(--text);
+    }
+
+    /* =========================
+       ASSETS
+    ========================= */
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .asset {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      background: var(--panel-2);
+    }
+
+    .asset-name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .asset-status {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .asset-status.ready {
+      color: var(--success);
+    }
+
+    .asset-status.error {
+      color: var(--danger);
+    }
+
+    .asset-status.loading {
+      color: var(--soft);
+    }
+
+    /* =========================
+       FORMS
+    ========================= */
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 12px;
+      color: var(--soft);
+      font-weight: 600;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      color: var(--text);
+      background: #0b0b0b;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      padding: 12px 13px;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #555;
+    }
+
+    textarea {
+      min-height: 270px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    .template-select {
+      min-height: 46px;
+      border-color: #444;
+      background: #0b0b0b;
+      font-weight: 600;
+    }
+
+    .template-select:hover {
+      border-color: #555;
+    }
+
+    .template-select:focus {
+      border-color: #777;
+    }
+
+    .field-hint {
+      color: #707070;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      background: #181818;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-weight: 600;
+      transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        opacity 0.15s ease;
+    }
+
+    button:hover {
+      background: #222;
+      border-color: #444;
+    }
+
+    button.primary {
+      background: #f1f1f1;
+      color: #080808;
+      border-color: #f1f1f1;
+    }
+
+    button.primary:hover {
+      background: #ffffff;
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* =========================
+       FILE INPUTS
+    ========================= */
+
+    .file-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .file-box {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      background: var(--panel-2);
+    }
+
+    .file-box label {
+      display: block;
+      margin-bottom: 9px;
+    }
+
+    /* =========================
+       PREVIEW
+    ========================= */
+
+    .preview-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .preview-frame {
+      width: 100%;
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 8px;
+    }
+
+    #previewCanvas {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+      border-radius: 8px;
+    }
+
+    .status-box {
+      min-height: 120px;
+      background: #0c0c0c;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    /* =========================
+       CSV
+    ========================= */
+
+    .csv-help {
+      padding: 13px 14px;
+      margin-bottom: 14px;
+      background: #0c0c0c;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    code {
+      color: var(--text);
+      background: #1a1a1a;
+      border-radius: 5px;
+      padding: 2px 5px;
+    }
+
+    /* =========================
+       QUEUE
+    ========================= */
+
+    .queue-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .queue-count {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    #queueBody {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .queue-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      border-radius: 11px;
+      padding: 11px 13px;
+      cursor: pointer;
+    }
+
+    .queue-item:hover {
+      border-color: #444;
+    }
+
+    .queue-item.selected {
+      border-color: #777;
+      background: #191919;
+    }
+
+    .queue-index {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .queue-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .queue-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .empty-queue {
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      border-radius: 11px;
+      padding: 22px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+      margin-top: 45px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: #666;
+      text-align: center;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .footer strong {
+      color: #aaa;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 850px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .asset-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .preview-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-frame {
+        max-width: 360px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .app {
+        width: min(100% - 20px, 1180px);
+        padding-top: 18px;
+      }
+
+      .header {
+        align-items: flex-start;
+      }
+
+      .header-logo {
+        height: 52px;
+        max-width: 125px;
+      }
+
+      .header-title {
+        font-size: 23px;
+      }
+
+      .header-subtitle {
+        font-size: 12px;
+      }
+
+      .form-grid,
+      .file-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .asset-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .queue-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<script>
+(() => {
+  const templates = {
+    "little-brother": {
+      title: "My little brother keeps asking me why I keep leaving my room at night.",
+      narration: `My little brother keeps asking me why I keep leaving my room at night.
+
+My little brother asked me something weird yesterday.
+
+"Why do you keep leaving your room at 3 AM?"
+
+I laughed.
+
+"I don't."
+
+He looked confused.
+
+"Yes, you do."
+
+I asked him what he saw.
+
+He said every night, my bedroom door opens.
+
+Then I walk downstairs.
+
+I stand in the kitchen for a few minutes.
+
+Then I come back upstairs.
+
+I thought he was dreaming.
+
+Until last night.
+
+At 3:07 AM, I heard my bedroom door open.
+
+I stayed completely still.
+
+Footsteps walked down the hallway.
+
+Then downstairs.
+
+I grabbed my phone and checked the time.
+
+3:08 AM.
+
+I heard the kitchen cabinet open.
+
+Then silence.
+
+A few minutes later, footsteps came back upstairs.
+
+They stopped outside my door.
+
+Then my door slowly opened.
+
+I expected to see myself.
+
+Instead, I saw my little brother standing there.
+
+He looked terrified.
+
+He whispered:
+
+"Don't look behind you."
+
+I slowly turned around.
+
+My closet door was open.
+
+Something was standing inside.
+
+Wearing my clothes.
+
+My brother grabbed my hand.
+
+Then my phone buzzed.
+
+A message from my own number appeared.
+
+"Don't let him wake up."
+
+I looked at my brother.
+
+He smiled.
+
+Then he whispered:
+
+"You finally noticed."`
+    },
+
+    "security-camera": {
+      title: "My dad installed a camera in my room, but he refuses to tell me why.",
+      narration: `My dad installed a camera in my room, but he refuses to tell me why.
+
+My dad gave me a new security camera last week.
+
+He said it was for safety.
+
+I installed it above my desk.
+
+Nothing unusual happened.
+
+Until yesterday.
+
+I was looking through the recordings when I noticed something strange.
+
+At exactly 2:14 AM, the camera showed me sitting on my bed.
+
+But I was asleep.
+
+I watched the video again.
+
+There I was.
+
+Sitting completely still.
+
+Staring directly into the camera.
+
+I called my dad.
+
+"Dad, why is there a recording of me awake last night?"
+
+He went silent.
+
+Then he asked:
+
+"Are you sure that's you?"
+
+I sent him the video.
+
+He immediately called me back.
+
+"Turn the camera off."
+
+I asked why.
+
+He said:
+
+"Because we removed that camera six months ago."
+
+I looked up.
+
+The camera was still above my desk.
+
+Then the recording suddenly updated.
+
+A new video appeared.
+
+It showed my bedroom.
+
+Except this time, I wasn't in it.
+
+Someone was standing behind the camera.
+
+Then they whispered:
+
+"Your dad knows."
+
+My phone buzzed.
+
+Dad had sent me one message.
+
+"Do not come home."
+
+I looked at my bedroom door.
+
+It was slowly opening.`
+    },
+
+    "dead-neighbor": {
+      title: "My neighbor knocks on my door every morning, but he died last month.",
+      narration: `My neighbor knocks on my door every morning, but he died last month.
+
+Every morning at 7 AM, someone knocks on my door.
+
+Three knocks.
+
+Always exactly three.
+
+I never answered because I assumed it was my neighbor.
+
+He used to do that every morning.
+
+Yesterday I finally opened the door.
+
+Nobody was there.
+
+I looked across the street.
+
+My neighbor's house was empty.
+
+Then I remembered.
+
+He died last month.
+
+I went back inside and checked my security camera.
+
+The footage showed him standing at my door.
+
+Same clothes.
+
+Same face.
+
+Same three knocks.
+
+I called his daughter.
+
+She started crying when I told her.
+
+Then she asked:
+
+"Did he say anything?"
+
+I said no.
+
+She went quiet.
+
+"That's strange."
+
+I asked why.
+
+She said:
+
+"My dad couldn't knock."
+
+"His hands were missing."
+
+I froze.
+
+That morning, the knocking happened again.
+
+Three knocks.
+
+This time, I heard a voice.
+
+"Open the door."
+
+I looked through the peephole.
+
+My neighbor was standing outside.
+
+Then he smiled.
+
+And pointed behind me.
+
+I turned around.
+
+Someone was standing in my hallway.
+
+Wearing the exact same clothes.`
+    },
+
+    "future-texts": {
+      title: "My phone keeps receiving texts from me 10 minutes in the future.",
+      narration: `My phone keeps receiving texts from me 10 minutes in the future.
+
+The first message said:
+
+"Don't leave your room."
+
+I thought it was a glitch.
+
+Then another message arrived.
+
+"Your mom is about to knock."
+
+Ten seconds later, someone knocked.
+
+It was Mom.
+
+I asked her if she had texted me.
+
+She said no.
+
+Another message appeared.
+
+"Don't open the door."
+
+I looked at Mom.
+
+She was still knocking.
+
+"Open up."
+
+I didn't.
+
+Then my phone buzzed again.
+
+"Good. Now hide."
+
+I asked who was texting me.
+
+The reply came instantly.
+
+"Me."
+
+I typed:
+
+"Who is me?"
+
+Three dots appeared.
+
+Then:
+
+"You."
+
+I laughed nervously.
+
+Then another message appeared.
+
+"Whatever happens, don't look through the window."
+
+I heard something outside.
+
+I looked anyway.
+
+There was someone standing in the backyard.
+
+It looked exactly like me.
+
+My phone buzzed one last time.
+
+"Why did you look?"
+
+I stared at the window.
+
+The person outside slowly raised their phone.
+
+Mine buzzed again.
+
+The message said:
+
+"I'm not outside anymore."`
+    }
+  };
+
+  function initStoryTemplate() {
+    const select = document.getElementById("storyTemplate");
+    const title = document.getElementById("titleInput");
+    const narration = document.getElementById("narrationInput");
+    const credit = document.getElementById("creditInput");
+
+    if (!select || !title || !narration) {
+      console.error(
+        "[Story Template] Missing required elements:",
+        {
+          storyTemplate: !!select,
+          titleInput: !!title,
+          narrationInput: !!narration
+        }
+      );
+      return;
+    }
+
+    select.addEventListener("change", () => {
+      const template = templates[select.value];
+
+      // Placeholder selected
+      if (!template) return;
+
+      // Fill title
+      title.value = template.title;
+
+      // Fill narration
+      // The title is already included as the first line.
+      narration.value = template.narration;
+
+      // Template selection clears REG-ID / credit
+      if (credit) {
+        credit.value = "";
+      }
+
+      // Tell the rest of the UI that values changed
+      title.dispatchEvent(
+        new Event("input", { bubbles: true })
+      );
+
+      narration.dispatchEvent(
+        new Event("input", { bubbles: true })
+      );
+
+      if (credit) {
+        credit.dispatchEvent(
+          new Event("input", { bubbles: true })
+        );
+      }
+
+      // Update preview if available
+      if (typeof window.drawPreview === "function") {
+        try {
+          window.drawPreview();
+        } catch (e) {
+          console.warn(
+            "[Story Template] Preview update failed:",
+            e
+          );
+        }
+      }
+
+      // Update status if available
+      if (typeof window.setStatus === "function") {
+        try {
+          window.setStatus(
+            "Loaded story template: " + template.title
+          );
+        } catch (e) {}
+      }
+
+      console.log(
+        "[Story Template] Loaded:",
+        select.value
+      );
+    });
+
+    console.log(
+      "[Story Template] Handler initialized successfully."
+    );
+  }
+
+  // Works whether this script is loaded before or after DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initStoryTemplate,
+      { once: true }
+    );
+  } else {
+    initStoryTemplate();
+  }
+})();
+</script>
+
+<body>
+
+  <main class="app">
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="header">
+
+      <img
+        id="logoLoader"
+        class="header-logo"
+        src="../../asset/iaf-logo.png"
+        alt="Reddit Story Generator"
+      />
+
+      <div class="header-text">
+
+        <h1 class="header-title">
+          Reddit Story Generator
+        </h1>
+
+        <p class="header-subtitle">
+          Free, local, unlimited Reddit-style story video generation.
+        </p>
+
+      </div>
+
+    </header>
+
+
+    <!-- =========================
+         BEFORE YOU START
+    ========================= -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            Before You Start
+          </h2>
+
+          <p class="section-description">
+            Everything you need to know before generating your first video.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="info-grid">
+
+        <!-- HOW IT WORKS -->
+
+        <div class="info-card">
+
+          <h2>
+            How It Works
+          </h2>
+
+          <ul>
+
+            <li>
+              Write your own Reddit-style story or choose a template.
+            </li>
+
+            <li>
+              Choose your voice, speed, and subtitle settings.
+            </li>
+
+            <li>
+              Kokoro generates the narration locally.
+            </li>
+
+            <li>
+              Your story is rendered into a vertical video.
+            </li>
+
+            <li>
+              The finished video is downloaded directly to your device.
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <!-- FREE -->
+
+        <div class="info-card">
+
+          <h2>
+            Free & Unlimited
+          </h2>
+
+          <p>
+            Reddit Story Generator is free to use.
+            There is no daily, monthly, or per-video generation limit.
+          </p>
+
+          <br />
+
+          <p>
+            Generate as many videos as you want.
+            Your only practical limitation is the performance
+            and storage capacity of your own device.
+          </p>
+
+        </div>
+
+
+        <!-- LOCAL -->
+
+        <div class="info-card">
+
+          <h2>
+            Local Processing
+          </h2>
+
+          <p>
+            Video generation runs locally on your own device.
+            Your story, narration, and rendering process do not need
+            to be uploaded to a Reddit Story Generator server.
+          </p>
+
+          <br />
+
+          <p>
+            Processing speed depends on your device.
+            Faster hardware generally means faster generation,
+            while slower devices may take longer.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- NOTICE -->
+
+      <div class="notice">
+
+        <strong>
+          Processing speed:
+        </strong>
+
+        Generation time depends on your CPU, GPU, RAM, browser,
+        storage speed, and overall system performance.
+        This tool does not guarantee a specific processing time.
+
+        <br />
+        <br />
+
+        <strong>
+          Watermark policy:
+        </strong>
+
+        Generated videos include
+        <strong>
+          “made with shortvid.indoadvfuture.com”
+        </strong>
+        as a watermark.
+
+        Please do not remove, crop out, cover, or intentionally
+        obscure the watermark.
+
+        The watermark helps people discover the generator and
+        supports the maintenance and continued development
+        of this free tool.
+
+        <br />
+        <br />
+
+        <strong>
+          Terms & EULA:
+        </strong>
+
+        You are responsible for the content you generate.
+        Respect copyright, privacy, intellectual property,
+        and the rules of the platforms where you publish your videos.
+
+        The software is provided as-is and may change over time.
+
+        By using Reddit Story Generator, you agree to these basic terms.
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ASSETS
+    ========================= -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            Assets
+          </h2>
+
+          <p class="section-description">
+            Default assets used when generating the video.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+
+        <div class="asset-grid">
+
+          <div class="asset">
+
+            <div class="asset-name">
+              Logo
+            </div>
+
+            <div
+              id="logoStatus"
+              class="asset-status"
+            >
+              Loading...
+            </div>
+
+          </div>
+
+
+          <div class="asset">
+
+            <div class="asset-name">
+              Background Video
+            </div>
+
+            <div
+              id="videoStatus"
+              class="asset-status"
+            >
+              Loading...
+            </div>
+
+          </div>
+
+
+          <div class="asset">
+
+            <div class="asset-name">
+              Background Audio
+            </div>
+
+            <div
+              id="audioStatus"
+              class="asset-status"
+            >
+              Loading...
+            </div>
+
+          </div>
+
+
+          <div class="asset">
+
+            <div class="asset-name">
+              End Screen
+            </div>
+
+            <div
+              id="endStatus"
+              class="asset-status"
+            >
+              Loading...
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CUSTOM ASSETS
+    ========================= -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            Custom Assets
+          </h2>
+
+          <p class="section-description">
+            Optional. Replace the default background video or audio.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+
+        <div class="file-grid">
+
+          <div class="file-box">
+
+            <label for="customVideo">
+              Custom Background Video
+            </label>
+
+            <input
+              id="customVideo"
+              type="file"
+              accept="video/*"
+            />
+
+          </div>
+
+
+          <div class="file-box">
+
+            <label for="customAudio">
+              Custom Background Audio
+            </label>
+
+            <input
+              id="customAudio"
+              type="file"
+              accept="audio/*"
+            />
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MANUAL MODE
+    ========================= -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            Manual Mode
+          </h2>
+
+          <p class="section-description">
+            Create one Reddit story video manually.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+
+        <div class="form-grid">
+
+
+          <!-- STORY TEMPLATE -->
+
+          <div class="field full">
+
+            <label for="storyTemplate">
+              Story Template (if you need one)
+            </label>
+
+            <select
+              id="storyTemplate"
+              class="template-select"
+            >
+
+              <option value="">
+                Select a story template...
+              </option>
+
+              <option value="little-brother">
+                My little brother keeps asking me why I keep leaving my room at night.
+              </option>
+
+              <option value="security-camera">
+                My dad installed a camera in my room, but he refuses to tell me why.
+              </option>
+
+              <option value="dead-neighbor">
+                My neighbor knocks on my door every morning, but he died last month.
+              </option>
+
+              <option value="future-texts">
+                My phone keeps receiving texts from me 10 minutes in the future.
+              </option>
+
+            </select>
+
+            <div class="field-hint">
+              Select a template to automatically fill the title and narration.
+              You can edit both after loading the template.
+            </div>
+
+          </div>
+
+
+          <!-- TITLE -->
+
+          <div class="field full">
+
+            <label for="titleInput">
+              Title
+            </label>
+
+            <input
+              id="titleInput"
+              type="text"
+              placeholder="e.g. I accidentally became the CEO ..."
+            />
+
+          </div>
+
+
+          <!-- CREDIT -->
+
+          <div class="field">
+
+            <label for="creditInput">
+              Your account name (opsional)
+            </label>
+
+            <input
+              id="creditInput"
+              type="text"
+              placeholder="e.g. @reditstory..."
+            />
+
+          </div>
+
+
+          <!-- VOICE -->
+
+          <div class="field">
+
+            <label for="voiceInput">
+              Voice
+            </label>
+
+            <input
+              id="voiceInput"
+              type="text"
+              value="af_heart"
+              placeholder="Kokoro voice"
+            />
+
+          </div>
+
+
+          <!-- SPEED -->
+
+          <div class="field">
+
+            <label for="speedInput">
+              Speed
+            </label>
+
+            <input
+              id="speedInput"
+              type="number"
+              value="1"
+              min="0.1"
+              max="3"
+              step="0.05"
+            />
+
+          </div>
+
+
+          <!-- SUBTITLES -->
+
+          <div class="field">
+
+            <label for="subtitlesInput">
+              Subtitles
+            </label>
+
+            <select id="subtitlesInput">
+
+              <option value="true">
+                Enabled
+              </option>
+
+              <option value="false">
+                Disabled
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- NARRATION -->
+
+          <div class="field full">
+
+            <label for="narrationInput">
+              Narration
+            </label>
+
+            <textarea
+              id="narrationInput"
+              placeholder="Enter the narration here..."
+            ></textarea>
+
+            <div class="field-hint">
+              Story templates automatically include the title as
+              the first line of the narration.
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="button-row">
+
+          <button
+            id="generateBtn"
+            class="primary"
+          >
+            Generate Video
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIEW
+    ========================= -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            Preview
+          </h2>
+
+          <p class="section-description">
+            Live preview of the generated video layout.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+
+        <div class="preview-layout">
+
+
+          <div class="preview-frame">
+
+            <canvas
+              id="previewCanvas"
+              width="1080"
+              height="1920"
+            ></canvas>
+
+          </div>
+
+
+          <div>
+
+            <div class="status-box">
+
+              <span id="statusText">
+                Initializing...
+              </span>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CSV QUEUE
+    ========================= -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            CSV Queue
+          </h2>
+
+          <p class="section-description">
+            Load multiple stories and generate them sequentially.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+
+
+        <div class="csv-help">
+
+          CSV format:
+
+          <code>
+            title,credit,narration,voice,speed,subtitles
+          </code>
+
+          <br />
+
+          Narration containing commas should be enclosed
+          in quotation marks.
+
+        </div>
+
+
+        <div class="file-box">
+
+          <label for="csvInput">
+            CSV File
+          </label>
+
+          <input
+            id="csvInput"
+            type="file"
+            accept=".csv,text/csv"
+          />
+
+        </div>
+
+
+        <div class="button-row">
+
+          <button id="copyHeaderBtn">
+            Copy CSV Header
+          </button>
+
+          <button id="clearQueueBtn">
+            Clear Queue
+          </button>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUEUE
+    ========================= -->
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            Queue
+          </h2>
+
+          <p class="section-description">
+            Select an item to load or generate it.
+          </p>
+
+        </div>
+
+
+        <div class="queue-count">
+
+          Items:
+
+          <strong id="queueCount">
+            0
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+
+
+        <div class="queue-toolbar">
+
+
+          <div class="queue-count">
+            Click a story to select it.
+          </div>
+
+
+          <div
+            class="button-row"
+            style="margin-top: 0;"
+          >
+
+            <button id="loadSelectedBtn">
+              Load Selected
+            </button>
+
+            <button id="generateSelectedBtn">
+              Generate Selected
+            </button>
+
+            <button
+              id="generateAllBtn"
+              class="primary"
+            >
+              Generate All
+            </button>
+
+          </div>
+
+
+        </div>
+
+
+        <div id="queueBody">
+
+          <div class="empty-queue">
+            No CSV loaded.
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer class="footer">
+
+      <strong>
+        Reddit Story Generator
+      </strong>
+
+      <br />
+
+      Free and unlimited local browser-based
+      Reddit story video generation.
+
+      <br />
+
+      Processing speed depends on your device.
+
+      <br />
+
+      Please keep the generated watermark intact.
+      It helps support the continued development
+      and maintenance of this free tool.
+
+    </footer>
+
+  </main>
+
+
+  <!-- =========================
+       HIDDEN ASSET LOADERS
+  ========================= -->
+
+  <video
+    id="bgLoader"
+    src="bg.mp4"
+    preload="auto"
+    muted
+    loop
+    playsinline
+    style="display: none;"
+  ></video>
+
+
+  <img
+    id="endLoader"
+    src="end.png"
+    alt=""
+    style="display: none;"
+  />
+
+
+  <!-- =========================
+       SCRIPTS
+  ========================= -->
+
+  <script src="video-generator.js"></script>
+  <script src="ui.js"></script>
+
+</body>
+</html>
