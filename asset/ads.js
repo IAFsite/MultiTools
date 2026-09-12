@@ -1,10 +1,7 @@
 // IAF MultiTools - Advertisement Loader
 
 const ads = [
-    "asset/ads/ad1.gif",
-    "asset/ads/ad2.gif",
-    "asset/ads/ad3.gif",
-    "asset/ads/ad4.gif"
+    "https://multitools.indoadvfuture.com/asset/ads.gif"
 ];
 
 function loadAds() {
