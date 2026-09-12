@@ -574,7 +574,7 @@ function drawRegId(credit = "") {
 
   const text =
     String(credit || "").trim() ||
-    "made with shortvid.indoadvfuture.com";
+    "made with multitools.indoadvfuture.com/shortvid";
 
   ctx.save();
 
@@ -614,7 +614,7 @@ function drawWatermark() {
   ctx.textBaseline = "middle";
 
   ctx.fillText(
-    "made with shortvid.indoadvfuture.com",
+    "made with multitools.indoadvfuture.com/shortvid",
     canvas.width / 2,
     canvas.height - 55
   );
