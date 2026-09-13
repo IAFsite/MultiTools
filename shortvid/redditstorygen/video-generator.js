@@ -2086,6 +2086,27 @@ function drawEndScreen() {
 }
 
 /* =========================================================
+   WEBM CONVERSION PROMPT
+   ========================================================= */
+
+const VIDEO_CONVERTER_URL =
+  "../video-converter/index.html";
+
+function showWebMConversionPrompt() {
+  if (
+    typeof window.showWebMConversionPrompt ===
+    "function"
+  ) {
+    window.showWebMConversionPrompt();
+    return;
+  }
+
+  console.warn(
+    "WebM conversion modal is not available."
+  );
+}
+
+/* =========================================================
    DOWNLOAD
    ========================================================= */
 
@@ -2119,6 +2140,23 @@ function downloadBlob(
       );
     },
     1000
+  );
+
+  /*
+    The WebM download has now been triggered.
+    Ask the user whether they want to continue
+    to the MP4 converter.
+  */
+  setTimeout(
+    () => {
+      if (
+        typeof window.showWebMConversionPrompt ===
+        "function"
+      ) {
+        window.showWebMConversionPrompt();
+      }
+    },
+    500
   );
 }
 

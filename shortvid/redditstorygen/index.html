@@ -954,6 +954,109 @@
     }
 
     /* =====================================================
+       MP4 CONVERTER MODAL
+    ===================================================== */
+
+    .converter-modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 9999;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+
+      background: rgba(0, 0, 0, 0.78);
+
+      backdrop-filter: blur(5px);
+    }
+
+    .converter-modal.visible {
+      display: flex;
+    }
+
+    .converter-dialog {
+      width: min(520px, 100%);
+
+      padding: 26px;
+
+      background: #111111;
+
+      border: 1px solid #333333;
+      border-radius: 16px;
+
+      box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    .converter-label {
+      margin-bottom: 10px;
+
+      color: var(--dim);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .converter-title {
+      margin: 0;
+
+      font-size: 22px;
+      line-height: 1.25;
+
+      letter-spacing: -0.5px;
+    }
+
+    .converter-text {
+      margin: 14px 0 0;
+
+      color: var(--soft);
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .converter-note {
+      margin: 14px 0 0;
+
+      padding: 12px 13px;
+
+      background: #0b0b0b;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .converter-actions {
+      display: flex;
+
+      justify-content: flex-end;
+
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-top: 22px;
+    }
+
+    .converter-actions button {
+      min-width: 130px;
+    }
+
+    /* =====================================================
        FOOTER
     ===================================================== */
 
@@ -1108,6 +1211,18 @@
 
       .panel {
         padding: 18px;
+      }
+
+      .converter-dialog {
+        padding: 22px;
+      }
+
+      .converter-actions {
+        flex-direction: column-reverse;
+      }
+
+      .converter-actions button {
+        width: 100%;
       }
     }
   </style>
@@ -1439,6 +1554,22 @@
         <br />
 
         <strong>
+          Export format:
+        </strong>
+
+        Due to browser and local-file limitations,
+        the generated video is exported in
+        <strong>
+          WebM format.
+        </strong>
+
+        If you need an MP4 file, IAF MultiTools
+        provides a separate local video converter.
+
+        <br />
+        <br />
+
+        <strong>
           Watermark:
         </strong>
 
@@ -1678,8 +1809,6 @@
       <div class="panel">
 
 
-        <!-- LOCAL CONFIG -->
-
         <div class="config-bar">
 
           <div class="config-status">
@@ -1713,8 +1842,6 @@
 
         <div class="form-grid">
 
-
-          <!-- STORY TEMPLATE -->
 
           <div class="field full">
 
@@ -1761,8 +1888,6 @@
           </div>
 
 
-          <!-- TITLE -->
-
           <div class="field full">
 
             <label for="titleInput">
@@ -1778,8 +1903,6 @@
           </div>
 
 
-          <!-- CREDIT -->
-
           <div class="field">
 
             <label for="creditInput">
@@ -1794,8 +1917,6 @@
 
           </div>
 
-
-          <!-- VOICE -->
 
           <div class="field">
 
@@ -1864,8 +1985,6 @@
           </div>
 
 
-          <!-- SPEED -->
-
           <div class="field">
 
             <label for="speedInput">
@@ -1883,8 +2002,6 @@
 
           </div>
 
-
-          <!-- SUBTITLES -->
 
           <div class="field">
 
@@ -1906,8 +2023,6 @@
 
           </div>
 
-
-          <!-- NARRATION -->
 
           <div class="field full">
 
@@ -2248,33 +2363,110 @@
   </main>
 
 
-<!-- =====================================================
-     HIDDEN ASSET LOADERS
-===================================================== -->
+  <!-- ===================================================
+       MP4 CONVERTER MODAL
+  =================================================== -->
 
-<video
-  id="bgLoader"
-  src="bg.mp4"
-  preload="auto"
-  muted
-  loop
-  playsinline
-  style="display: none;"
-></video>
+  <div
+    id="converterModal"
+    class="converter-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="converterModalTitle"
+  >
 
-<img
-  id="logoLoader"
-  src="../../asset/iaf-logo.png"
-  alt="IAF Logo"
-  style="display: none;"
-/>
+    <div class="converter-dialog">
 
-<img
-  id="endLoader"
-  src="end.png"
-  alt=""
-  style="display: none;"
-/>
+      <div class="converter-label">
+        IAF MULTITOOLS / EXPORT
+      </div>
+
+
+      <h2
+        id="converterModalTitle"
+        class="converter-title"
+      >
+        Need an MP4 version?
+      </h2>
+
+
+      <p class="converter-text">
+
+        Due to local browser limitations,
+        the generated video will always be
+        exported in WebM format.
+
+        Would you like to convert the file
+        to MP4 using IAF MultiTools Video Converter?
+
+      </p>
+
+
+      <div class="converter-note">
+
+        The WebM file has already been downloaded
+        to your device.
+
+        You can upload that WebM file to the
+        converter on the next page.
+
+        The converter page may also contain
+        advertisements which help support
+        the free MultiTools service.
+
+      </div>
+
+
+      <div class="converter-actions">
+
+        <button
+          id="converterKeepBtn"
+        >
+          No, keep WebM
+        </button>
+
+
+        <button
+          id="converterGoBtn"
+          class="primary"
+        >
+          Convert to MP4
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       HIDDEN ASSET LOADERS
+  ===================================================== -->
+
+  <video
+    id="bgLoader"
+    src="bg.mp4"
+    preload="auto"
+    muted
+    loop
+    playsinline
+    style="display: none;"
+  ></video>
+
+  <img
+    id="logoLoader"
+    src="../../asset/iaf-logo.png"
+    alt="IAF Logo"
+    style="display: none;"
+  />
+
+  <img
+    id="endLoader"
+    src="end.png"
+    alt=""
+    style="display: none;"
+  />
 
 
   <!-- =====================================================
@@ -3364,6 +3556,312 @@ The message said:
   <script src="video-generator.js"></script>
 
   <script src="ui.js"></script>
+
+
+  <!-- =====================================================
+       MP4 CONVERTER REDIRECT
+  ===================================================== -->
+
+  <script>
+  (() => {
+
+    /*
+      Change this only if your converter folder
+      uses a different path.
+    */
+
+    const CONVERTER_URL =
+      "../video-converter/index.html";
+
+
+    const modal =
+      document.getElementById(
+        "converterModal"
+      );
+
+    const keepButton =
+      document.getElementById(
+        "converterKeepBtn"
+      );
+
+    const convertButton =
+      document.getElementById(
+        "converterGoBtn"
+      );
+
+
+    if (
+      !modal ||
+      !keepButton ||
+      !convertButton
+    ) {
+
+      console.warn(
+        "[ShortVid] Converter modal elements missing."
+      );
+
+      return;
+
+    }
+
+
+    let promptOpen = false;
+
+
+    function openConverterPrompt() {
+
+      if (promptOpen) {
+        return;
+      }
+
+
+      promptOpen = true;
+
+
+      modal.classList.add(
+        "visible"
+      );
+
+
+      document.body.style.overflow =
+        "hidden";
+
+
+      setTimeout(
+        () => {
+
+          convertButton.focus();
+
+        },
+        50
+      );
+
+    }
+
+
+    function closeConverterPrompt() {
+
+      promptOpen = false;
+
+
+      modal.classList.remove(
+        "visible"
+      );
+
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    keepButton.addEventListener(
+      "click",
+      closeConverterPrompt
+    );
+
+
+    convertButton.addEventListener(
+      "click",
+      () => {
+
+        /*
+          The generated WebM has already
+          been sent to the browser's
+          download process.
+
+          The WebM -> MP4 conversion happens
+          on the separate converter page.
+        */
+
+        window.location.href =
+          CONVERTER_URL;
+
+      }
+    );
+
+
+    modal.addEventListener(
+      "click",
+      (event) => {
+
+        if (
+          event.target === modal
+        ) {
+
+          closeConverterPrompt();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape" &&
+          modal.classList.contains("visible")
+        ) {
+
+          closeConverterPrompt();
+
+        }
+
+      }
+    );
+
+
+    /*
+      =====================================================
+      PUBLIC API
+      =====================================================
+
+      video-generator.js can manually trigger:
+
+      window.showMP4ConverterPrompt();
+
+      This is useful if you later want the generator
+      itself to explicitly announce the download.
+    */
+
+    window.showMP4ConverterPrompt =
+      openConverterPrompt;
+
+
+    /*
+      =====================================================
+      AUTOMATIC WEBM DOWNLOAD DETECTION
+      =====================================================
+
+      The current generator downloads the generated
+      video through an <a download="...webm"> element.
+
+      This hook watches programmatic anchor clicks so
+      the existing video-generator.js does not need to
+      be modified just for the popup.
+    */
+
+    const originalAnchorClick =
+      HTMLAnchorElement.prototype.click;
+
+
+    HTMLAnchorElement.prototype.click =
+      function () {
+
+        const downloadName =
+          String(
+            this.download || ""
+          );
+
+
+        const href =
+          String(
+            this.href || ""
+          );
+
+
+        const isWebMDownload =
+          /\.webm$/i.test(
+            downloadName
+          ) &&
+          (
+            href.startsWith("blob:") ||
+            downloadName.length > 0
+          );
+
+
+        const result =
+          originalAnchorClick.call(
+            this
+          );
+
+
+        if (isWebMDownload) {
+
+          /*
+            Give the browser a short moment
+            to start the download before
+            opening the conversion prompt.
+          */
+
+          setTimeout(
+            () => {
+
+              openConverterPrompt();
+
+            },
+            650
+          );
+
+        }
+
+
+        return result;
+
+      };
+
+
+    /*
+      Also catch normal download links that
+      receive a user click rather than a
+      programmatic .click().
+    */
+
+    document.addEventListener(
+      "click",
+      (event) => {
+
+        const anchor =
+          event.target.closest(
+            "a[download]"
+          );
+
+
+        if (!anchor) {
+          return;
+        }
+
+
+        const downloadName =
+          String(
+            anchor.download || ""
+          );
+
+
+        if (
+          !/\.webm$/i.test(
+            downloadName
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        setTimeout(
+          () => {
+
+            openConverterPrompt();
+
+          },
+          650
+        );
+
+      },
+      true
+    );
+
+
+    console.log(
+      "[ShortVid] WebM -> MP4 conversion prompt ready."
+    );
+
+  })();
+  </script>
 
 </body>
 
