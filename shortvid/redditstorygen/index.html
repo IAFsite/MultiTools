@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Reddit Story Generator</title>
+  <title>Reddit Story Generator — IAF MultiTools</title>
 
   <style>
     * {
@@ -15,10 +16,13 @@
       --bg: #090909;
       --panel: #111111;
       --panel-2: #151515;
+      --panel-3: #0d0d0d;
       --border: #292929;
+      --border-soft: #202020;
       --text: #f2f2f2;
-      --muted: #8e8e8e;
       --soft: #bdbdbd;
+      --muted: #808080;
+      --dim: #555555;
       --accent: #ffffff;
       --danger: #ff6b6b;
       --success: #78d99a;
@@ -50,6 +54,11 @@
       cursor: pointer;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     .app {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
@@ -64,14 +73,14 @@
       display: flex;
       align-items: center;
       gap: 18px;
-      padding: 18px 0 30px;
+      padding: 12px 0 18px;
       border-bottom: 1px solid var(--border);
     }
 
     .header-logo {
       width: auto;
-      height: 64px;
-      max-width: 170px;
+      height: 58px;
+      max-width: 160px;
       object-fit: contain;
       display: block;
       background: transparent;
@@ -93,6 +102,34 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.5;
+    }
+
+    /* =========================
+       PAGE BACK
+    ========================= */
+
+    .page-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+    }
+
+    .page-back:hover {
+      color: var(--text);
+      transform: translateX(-2px);
+    }
+
+    .page-back span {
+      font-size: 14px;
+      line-height: 1;
     }
 
     /* =========================
@@ -300,6 +337,58 @@
     }
 
     /* =========================
+       LOCAL CONFIG
+    ========================= */
+
+    .config-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+    }
+
+    .config-status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .config-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      flex-shrink: 0;
+    }
+
+    .config-dot.saving {
+      background: var(--soft);
+    }
+
+    .config-dot.error {
+      background: var(--danger);
+    }
+
+    .config-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .config-actions button {
+      padding: 8px 11px;
+      font-size: 11px;
+    }
+
+    /* =========================
        BUTTONS
     ========================= */
 
@@ -501,6 +590,32 @@
     }
 
     /* =========================
+       AD SLOT
+    ========================= */
+
+    .ad-slot {
+      width: 100%;
+      aspect-ratio: 320 / 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      overflow: hidden;
+      background: #0d0d0d;
+      border: 1px dashed #303030;
+      border-radius: 12px;
+      color: var(--dim);
+      text-align: center;
+    }
+
+    .ad-slot img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* =========================
        FOOTER
     ========================= */
 
@@ -516,6 +631,23 @@
 
     .footer strong {
       color: #aaa;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      color: #777;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
     }
 
     /* =========================
@@ -548,15 +680,16 @@
 
       .header {
         align-items: flex-start;
+        gap: 13px;
       }
 
       .header-logo {
-        height: 52px;
-        max-width: 125px;
+        height: 48px;
+        max-width: 115px;
       }
 
       .header-title {
-        font-size: 23px;
+        font-size: 22px;
       }
 
       .header-subtitle {
@@ -580,441 +713,21 @@
         align-items: flex-start;
         flex-direction: column;
       }
+
+      .config-bar {
+        align-items: flex-start;
+      }
+
+      .config-actions {
+        width: 100%;
+      }
+
+      .config-actions button {
+        flex: 1;
+      }
     }
   </style>
 </head>
-
-<script>
-(() => {
-  const templates = {
-    "little-brother": {
-      title: "My little brother keeps asking me why I keep leaving my room at night.",
-      narration: `My little brother keeps asking me why I keep leaving my room at night.
-
-My little brother asked me something weird yesterday.
-
-"Why do you keep leaving your room at 3 AM?"
-
-I laughed.
-
-"I don't."
-
-He looked confused.
-
-"Yes, you do."
-
-I asked him what he saw.
-
-He said every night, my bedroom door opens.
-
-Then I walk downstairs.
-
-I stand in the kitchen for a few minutes.
-
-Then I come back upstairs.
-
-I thought he was dreaming.
-
-Until last night.
-
-At 3:07 AM, I heard my bedroom door open.
-
-I stayed completely still.
-
-Footsteps walked down the hallway.
-
-Then downstairs.
-
-I grabbed my phone and checked the time.
-
-3:08 AM.
-
-I heard the kitchen cabinet open.
-
-Then silence.
-
-A few minutes later, footsteps came back upstairs.
-
-They stopped outside my door.
-
-Then my door slowly opened.
-
-I expected to see myself.
-
-Instead, I saw my little brother standing there.
-
-He looked terrified.
-
-He whispered:
-
-"Don't look behind you."
-
-I slowly turned around.
-
-My closet door was open.
-
-Something was standing inside.
-
-Wearing my clothes.
-
-My brother grabbed my hand.
-
-Then my phone buzzed.
-
-A message from my own number appeared.
-
-"Don't let him wake up."
-
-I looked at my brother.
-
-He smiled.
-
-Then he whispered:
-
-"You finally noticed."`
-    },
-
-    "security-camera": {
-      title: "My dad installed a camera in my room, but he refuses to tell me why.",
-      narration: `My dad installed a camera in my room, but he refuses to tell me why.
-
-My dad gave me a new security camera last week.
-
-He said it was for safety.
-
-I installed it above my desk.
-
-Nothing unusual happened.
-
-Until yesterday.
-
-I was looking through the recordings when I noticed something strange.
-
-At exactly 2:14 AM, the camera showed me sitting on my bed.
-
-But I was asleep.
-
-I watched the video again.
-
-There I was.
-
-Sitting completely still.
-
-Staring directly into the camera.
-
-I called my dad.
-
-"Dad, why is there a recording of me awake last night?"
-
-He went silent.
-
-Then he asked:
-
-"Are you sure that's you?"
-
-I sent him the video.
-
-He immediately called me back.
-
-"Turn the camera off."
-
-I asked why.
-
-He said:
-
-"Because we removed that camera six months ago."
-
-I looked up.
-
-The camera was still above my desk.
-
-Then the recording suddenly updated.
-
-A new video appeared.
-
-It showed my bedroom.
-
-Except this time, I wasn't in it.
-
-Someone was standing behind the camera.
-
-Then they whispered:
-
-"Your dad knows."
-
-My phone buzzed.
-
-Dad had sent me one message.
-
-"Do not come home."
-
-I looked at my bedroom door.
-
-It was slowly opening.`
-    },
-
-    "dead-neighbor": {
-      title: "My neighbor knocks on my door every morning, but he died last month.",
-      narration: `My neighbor knocks on my door every morning, but he died last month.
-
-Every morning at 7 AM, someone knocks on my door.
-
-Three knocks.
-
-Always exactly three.
-
-I never answered because I assumed it was my neighbor.
-
-He used to do that every morning.
-
-Yesterday I finally opened the door.
-
-Nobody was there.
-
-I looked across the street.
-
-My neighbor's house was empty.
-
-Then I remembered.
-
-He died last month.
-
-I went back inside and checked my security camera.
-
-The footage showed him standing at my door.
-
-Same clothes.
-
-Same face.
-
-Same three knocks.
-
-I called his daughter.
-
-She started crying when I told her.
-
-Then she asked:
-
-"Did he say anything?"
-
-I said no.
-
-She went quiet.
-
-"That's strange."
-
-I asked why.
-
-She said:
-
-"My dad couldn't knock."
-
-"His hands were missing."
-
-I froze.
-
-That morning, the knocking happened again.
-
-Three knocks.
-
-This time, I heard a voice.
-
-"Open the door."
-
-I looked through the peephole.
-
-My neighbor was standing outside.
-
-Then he smiled.
-
-And pointed behind me.
-
-I turned around.
-
-Someone was standing in my hallway.
-
-Wearing the exact same clothes.`
-    },
-
-    "future-texts": {
-      title: "My phone keeps receiving texts from me 10 minutes in the future.",
-      narration: `My phone keeps receiving texts from me 10 minutes in the future.
-
-The first message said:
-
-"Don't leave your room."
-
-I thought it was a glitch.
-
-Then another message arrived.
-
-"Your mom is about to knock."
-
-Ten seconds later, someone knocked.
-
-It was Mom.
-
-I asked her if she had texted me.
-
-She said no.
-
-Another message appeared.
-
-"Don't open the door."
-
-I looked at Mom.
-
-She was still knocking.
-
-"Open up."
-
-I didn't.
-
-Then my phone buzzed again.
-
-"Good. Now hide."
-
-I asked who was texting me.
-
-The reply came instantly.
-
-"Me."
-
-I typed:
-
-"Who is me?"
-
-Three dots appeared.
-
-Then:
-
-"You."
-
-I laughed nervously.
-
-Then another message appeared.
-
-"Whatever happens, don't look through the window."
-
-I heard something outside.
-
-I looked anyway.
-
-There was someone standing in the backyard.
-
-It looked exactly like me.
-
-My phone buzzed one last time.
-
-"Why did you look?"
-
-I stared at the window.
-
-The person outside slowly raised their phone.
-
-Mine buzzed again.
-
-The message said:
-
-"I'm not outside anymore."`
-    }
-  };
-
-  function initStoryTemplate() {
-    const select = document.getElementById("storyTemplate");
-    const title = document.getElementById("titleInput");
-    const narration = document.getElementById("narrationInput");
-    const credit = document.getElementById("creditInput");
-
-    if (!select || !title || !narration) {
-      console.error(
-        "[Story Template] Missing required elements:",
-        {
-          storyTemplate: !!select,
-          titleInput: !!title,
-          narrationInput: !!narration
-        }
-      );
-      return;
-    }
-
-    select.addEventListener("change", () => {
-      const template = templates[select.value];
-
-      // Placeholder selected
-      if (!template) return;
-
-      // Fill title
-      title.value = template.title;
-
-      // Fill narration
-      // The title is already included as the first line.
-      narration.value = template.narration;
-
-      // Template selection clears REG-ID / credit
-      if (credit) {
-        credit.value = "";
-      }
-
-      // Tell the rest of the UI that values changed
-      title.dispatchEvent(
-        new Event("input", { bubbles: true })
-      );
-
-      narration.dispatchEvent(
-        new Event("input", { bubbles: true })
-      );
-
-      if (credit) {
-        credit.dispatchEvent(
-          new Event("input", { bubbles: true })
-        );
-      }
-
-      // Update preview if available
-      if (typeof window.drawPreview === "function") {
-        try {
-          window.drawPreview();
-        } catch (e) {
-          console.warn(
-            "[Story Template] Preview update failed:",
-            e
-          );
-        }
-      }
-
-      // Update status if available
-      if (typeof window.setStatus === "function") {
-        try {
-          window.setStatus(
-            "Loaded story template: " + template.title
-          );
-        } catch (e) {}
-      }
-
-      console.log(
-        "[Story Template] Loaded:",
-        select.value
-      );
-    });
-
-    console.log(
-      "[Story Template] Handler initialized successfully."
-    );
-  }
-
-  // Works whether this script is loaded before or after DOM is ready
-  if (document.readyState === "loading") {
-    document.addEventListener(
-      "DOMContentLoaded",
-      initStoryTemplate,
-      { once: true }
-    );
-  } else {
-    initStoryTemplate();
-  }
-})();
-</script>
 
 <body>
 
@@ -1030,7 +743,7 @@ The message said:
         id="logoLoader"
         class="header-logo"
         src="../../asset/iaf-logo.png"
-        alt="Reddit Story Generator"
+        alt="Indonesia Advance Future"
       />
 
       <div class="header-text">
@@ -1046,6 +759,24 @@ The message said:
       </div>
 
     </header>
+
+
+    <!-- =========================
+         PAGE NAVIGATION
+    ========================= -->
+
+    <section class="section" style="margin-top: 20px;">
+
+      <a
+        class="page-back"
+        href="../index.html"
+        onclick="if (history.length > 1) { history.back(); return false; }"
+      >
+        <span>←</span>
+        Back to MultiTools
+      </a>
+
+    </section>
 
 
     <!-- =========================
@@ -1195,7 +926,7 @@ The message said:
         <br />
 
         <strong>
-          Terms & EULA:
+          Terms of Service:
         </strong>
 
         You are responsible for the content you generate.
@@ -1204,11 +935,21 @@ The message said:
 
         The software is provided as-is and may change over time.
 
-        By using Reddit Story Generator, you agree to these basic terms.
+        By using Reddit Story Generator, you agree to the
+        IAF MultiTools Terms of Service.
 
       </div>
 
     </section>
+
+
+    <!-- =========================
+         AD SLOT 01
+    ========================= -->
+
+    <div class="ad-slot">
+      Advertisement
+    </div>
 
 
     <!-- =========================
@@ -1366,6 +1107,11 @@ The message said:
 
         </div>
 
+        <div class="field-hint" style="margin-top: 10px;">
+          Custom asset files are selected locally by your browser.
+          They are not uploaded by this configuration system.
+        </div>
+
       </div>
 
     </section>
@@ -1395,6 +1141,39 @@ The message said:
 
 
       <div class="panel">
+
+        <!-- LOCAL CONFIG -->
+
+        <div class="config-bar">
+
+          <div class="config-status">
+
+            <span
+              id="configDot"
+              class="config-dot"
+            ></span>
+
+            <span id="configStatus">
+              Local configuration ready
+            </span>
+
+          </div>
+
+
+          <div class="config-actions">
+
+            <button id="saveConfigBtn">
+              Save Config
+            </button>
+
+            <button id="resetConfigBtn">
+              Reset Config
+            </button>
+
+          </div>
+
+        </div>
+
 
         <div class="form-grid">
 
@@ -1470,7 +1249,7 @@ The message said:
             <input
               id="creditInput"
               type="text"
-              placeholder="e.g. @reditstory..."
+              placeholder="e.g. @redditstory..."
             />
 
           </div>
@@ -1484,12 +1263,57 @@ The message said:
               Voice
             </label>
 
-            <input
-              id="voiceInput"
-              type="text"
-              value="af_heart"
-              placeholder="Kokoro voice"
-            />
+            <select id="voiceInput">
+
+              <option value="af_heart" selected>
+                af_heart — Female
+              </option>
+
+              <option value="af_bella">
+                af_bella — Female
+              </option>
+
+              <option value="af_nicole">
+                af_nicole — Female
+              </option>
+
+              <option value="af_sarah">
+                af_sarah — Female
+              </option>
+
+              <option value="af_sky">
+                af_sky — Female
+              </option>
+
+              <option value="am_adam">
+                am_adam — Male
+              </option>
+
+              <option value="am_michael">
+                am_michael — Male
+              </option>
+
+              <option value="bf_emma">
+                bf_emma — British Female
+              </option>
+
+              <option value="bf_isabella">
+                bf_isabella — British Female
+              </option>
+
+              <option value="bm_george">
+                bm_george — British Male
+              </option>
+
+              <option value="bm_lewis">
+                bm_lewis — British Male
+              </option>
+
+            </select>
+
+            <div class="field-hint">
+              Kokoro voice used for local narration generation.
+            </div>
 
           </div>
 
@@ -1634,6 +1458,15 @@ The message said:
       </div>
 
     </section>
+
+
+    <!-- =========================
+         AD SLOT 02
+    ========================= -->
+
+    <div class="ad-slot">
+      Advertisement
+    </div>
 
 
     <!-- =========================
@@ -1821,6 +1654,26 @@ The message said:
       It helps support the continued development
       and maintenance of this free tool.
 
+      <div class="footer-links">
+
+        <a href="../index.html">
+          Home
+        </a>
+
+        <a href="../terms.html">
+          Terms
+        </a>
+
+        <a href="#">
+          Privacy
+        </a>
+
+        <a href="#">
+          Disclaimer
+        </a>
+
+      </div>
+
     </footer>
 
   </main>
@@ -1850,11 +1703,1178 @@ The message said:
 
 
   <!-- =========================
-       SCRIPTS
+       STORY TEMPLATES
+    ========================= -->
+
+  <script>
+  (() => {
+
+    const templates = {
+
+      "little-brother": {
+        title:
+          "My little brother keeps asking me why I keep leaving my room at night.",
+
+        narration:
+`My little brother keeps asking me why I keep leaving my room at night.
+
+My little brother asked me something weird yesterday.
+
+"Why do you keep leaving your room at 3 AM?"
+
+I laughed.
+
+"I don't."
+
+He looked confused.
+
+"Yes, you do."
+
+I asked him what he saw.
+
+He said every night, my bedroom door opens.
+
+Then I walk downstairs.
+
+I stand in the kitchen for a few minutes.
+
+Then I come back upstairs.
+
+I thought he was dreaming.
+
+Until last night.
+
+At 3:07 AM, I heard my bedroom door open.
+
+I stayed completely still.
+
+Footsteps walked down the hallway.
+
+Then downstairs.
+
+I grabbed my phone and checked the time.
+
+3:08 AM.
+
+I heard the kitchen cabinet open.
+
+Then silence.
+
+A few minutes later, footsteps came back upstairs.
+
+They stopped outside my door.
+
+Then my door slowly opened.
+
+I expected to see myself.
+
+Instead, I saw my little brother standing there.
+
+He looked terrified.
+
+He whispered:
+
+"Don't look behind you."
+
+I slowly turned around.
+
+My closet door was open.
+
+Something was standing inside.
+
+Wearing my clothes.
+
+My brother grabbed my hand.
+
+Then my phone buzzed.
+
+A message from my own number appeared.
+
+"Don't let him wake up."
+
+I looked at my brother.
+
+He smiled.
+
+Then he whispered:
+
+"You finally noticed."`
+      },
+
+
+      "security-camera": {
+        title:
+          "My dad installed a camera in my room, but he refuses to tell me why.",
+
+        narration:
+`My dad installed a camera in my room, but he refuses to tell me why.
+
+My dad gave me a new security camera last week.
+
+He said it was for safety.
+
+I installed it above my desk.
+
+Nothing unusual happened.
+
+Until yesterday.
+
+I was looking through the recordings when I noticed something strange.
+
+At exactly 2:14 AM, the camera showed me sitting on my bed.
+
+But I was asleep.
+
+I watched the video again.
+
+There I was.
+
+Sitting completely still.
+
+Staring directly into the camera.
+
+I called my dad.
+
+"Dad, why is there a recording of me awake last night?"
+
+He went silent.
+
+Then he asked:
+
+"Are you sure that's you?"
+
+I sent him the video.
+
+He immediately called me back.
+
+"Turn the camera off."
+
+I asked why.
+
+He said:
+
+"Because we removed that camera six months ago."
+
+I looked up.
+
+The camera was still above my desk.
+
+Then the recording suddenly updated.
+
+A new video appeared.
+
+It showed my bedroom.
+
+Except this time, I wasn't in it.
+
+Someone was standing behind the camera.
+
+Then they whispered:
+
+"Your dad knows."
+
+My phone buzzed.
+
+Dad had sent me one message.
+
+"Do not come home."
+
+I looked at my bedroom door.
+
+It was slowly opening.`
+      },
+
+
+      "dead-neighbor": {
+        title:
+          "My neighbor knocks on my door every morning, but he died last month.",
+
+        narration:
+`My neighbor knocks on my door every morning, but he died last month.
+
+Every morning at 7 AM, someone knocks on my door.
+
+Three knocks.
+
+Always exactly three.
+
+I never answered because I assumed it was my neighbor.
+
+He used to do that every morning.
+
+Yesterday I finally opened the door.
+
+Nobody was there.
+
+I looked across the street.
+
+My neighbor's house was empty.
+
+Then I remembered.
+
+He died last month.
+
+I went back inside and checked my security camera.
+
+The footage showed him standing at my door.
+
+Same clothes.
+
+Same face.
+
+Same three knocks.
+
+I called his daughter.
+
+She started crying when I told her.
+
+Then she asked:
+
+"Did he say anything?"
+
+I said no.
+
+She went quiet.
+
+"That's strange."
+
+I asked why.
+
+She said:
+
+"My dad couldn't knock."
+
+"His hands were missing."
+
+I froze.
+
+That morning, the knocking happened again.
+
+Three knocks.
+
+This time, I heard a voice.
+
+"Open the door."
+
+I looked through the peephole.
+
+My neighbor was standing outside.
+
+Then he smiled.
+
+And pointed behind me.
+
+I turned around.
+
+Someone was standing in my hallway.
+
+Wearing the exact same clothes.`
+      },
+
+
+      "future-texts": {
+        title:
+          "My phone keeps receiving texts from me 10 minutes in the future.",
+
+        narration:
+`My phone keeps receiving texts from me 10 minutes in the future.
+
+The first message said:
+
+"Don't leave your room."
+
+I thought it was a glitch.
+
+Then another message arrived.
+
+"Your mom is about to knock."
+
+Ten seconds later, someone knocked.
+
+It was Mom.
+
+I asked her if she had texted me.
+
+She said no.
+
+Another message appeared.
+
+"Don't open the door."
+
+I looked at Mom.
+
+She was still knocking.
+
+"Open up."
+
+I didn't.
+
+Then my phone buzzed again.
+
+"Good. Now hide."
+
+I asked who was texting me.
+
+The reply came instantly.
+
+"Me."
+
+I typed:
+
+"Who is me?"
+
+Three dots appeared.
+
+Then:
+
+"You."
+
+I laughed nervously.
+
+Then another message appeared.
+
+"Whatever happens, don't look through the window."
+
+I heard something outside.
+
+I looked anyway.
+
+There was someone standing in the backyard.
+
+It looked exactly like me.
+
+My phone buzzed one last time.
+
+"Why did you look?"
+
+I stared at the window.
+
+The person outside slowly raised their phone.
+
+Mine buzzed again.
+
+The message said:
+
+"I'm not outside anymore."`
+      }
+
+    };
+
+
+    function initStoryTemplate() {
+
+      const select =
+        document.getElementById("storyTemplate");
+
+      const title =
+        document.getElementById("titleInput");
+
+      const narration =
+        document.getElementById("narrationInput");
+
+      const credit =
+        document.getElementById("creditInput");
+
+
+      if (!select || !title || !narration) {
+
+        console.error(
+          "[Story Template] Missing required elements:",
+          {
+            storyTemplate: !!select,
+            titleInput: !!title,
+            narrationInput: !!narration
+          }
+        );
+
+        return;
+      }
+
+
+      select.addEventListener("change", () => {
+
+        const template =
+          templates[select.value];
+
+
+        if (!template) {
+          return;
+        }
+
+
+        title.value =
+          template.title;
+
+        narration.value =
+          template.narration;
+
+
+        if (credit) {
+          credit.value = "";
+        }
+
+
+        title.dispatchEvent(
+          new Event("input", {
+            bubbles: true
+          })
+        );
+
+
+        narration.dispatchEvent(
+          new Event("input", {
+            bubbles: true
+          })
+        );
+
+
+        if (credit) {
+
+          credit.dispatchEvent(
+            new Event("input", {
+              bubbles: true
+            })
+          );
+
+        }
+
+
+        if (
+          typeof window.drawPreview ===
+          "function"
+        ) {
+
+          try {
+
+            window.drawPreview();
+
+          } catch (e) {
+
+            console.warn(
+              "[Story Template] Preview update failed:",
+              e
+            );
+
+          }
+
+        }
+
+
+        if (
+          typeof window.setStatus ===
+          "function"
+        ) {
+
+          try {
+
+            window.setStatus(
+              "Loaded story template: " +
+              template.title
+            );
+
+          } catch (e) {}
+
+        }
+
+
+        console.log(
+          "[Story Template] Loaded:",
+          select.value
+        );
+
+      });
+
+    }
+
+
+    if (
+      document.readyState ===
+      "loading"
+    ) {
+
+      document.addEventListener(
+        "DOMContentLoaded",
+        initStoryTemplate,
+        { once: true }
+      );
+
+    } else {
+
+      initStoryTemplate();
+
+    }
+
+  })();
+  </script>
+
+
+  <!-- =========================
+       LOCAL CONFIG DATABASE
+       IndexedDB
+  ========================= -->
+
+  <script>
+  (() => {
+
+    const DB_NAME =
+      "IAF_MultiTools_RedditStoryGenerator";
+
+    const DB_VERSION = 1;
+
+    const STORE_NAME =
+      "settings";
+
+
+    let db = null;
+
+    let saveTimer = null;
+
+
+    const CONFIG_FIELDS = [
+
+      "titleInput",
+      "creditInput",
+      "voiceInput",
+      "speedInput",
+      "subtitlesInput",
+      "narrationInput"
+
+    ];
+
+
+    function openDatabase() {
+
+      return new Promise(
+        (resolve, reject) => {
+
+          const request =
+            indexedDB.open(
+              DB_NAME,
+              DB_VERSION
+            );
+
+
+          request.onupgradeneeded =
+            (event) => {
+
+              const database =
+                event.target.result;
+
+
+              if (
+                !database.objectStoreNames.contains(
+                  STORE_NAME
+                )
+              ) {
+
+                database.createObjectStore(
+                  STORE_NAME
+                );
+
+              }
+
+            };
+
+
+          request.onsuccess =
+            () => {
+
+              db =
+                request.result;
+
+              resolve(db);
+
+            };
+
+
+          request.onerror =
+            () => {
+
+              reject(
+                request.error
+              );
+
+            };
+
+        }
+      );
+
+    }
+
+
+    function setConfigStatus(
+      text,
+      state = "ready"
+    ) {
+
+      const status =
+        document.getElementById(
+          "configStatus"
+        );
+
+      const dot =
+        document.getElementById(
+          "configDot"
+        );
+
+
+      if (status) {
+        status.textContent = text;
+      }
+
+
+      if (dot) {
+
+        dot.className =
+          "config-dot";
+
+
+        if (state === "saving") {
+          dot.classList.add("saving");
+        }
+
+        if (state === "error") {
+          dot.classList.add("error");
+        }
+
+      }
+
+    }
+
+
+    function readConfigFromUI() {
+
+      const config = {};
+
+
+      CONFIG_FIELDS.forEach(
+        (id) => {
+
+          const element =
+            document.getElementById(id);
+
+
+          if (!element) {
+            return;
+          }
+
+
+          config[id] =
+            element.value;
+
+        }
+      );
+
+
+      return config;
+
+    }
+
+
+    function applyConfigToUI(
+      config
+    ) {
+
+      if (!config) {
+        return;
+      }
+
+
+      CONFIG_FIELDS.forEach(
+        (id) => {
+
+          const element =
+            document.getElementById(id);
+
+
+          if (!element) {
+            return;
+          }
+
+
+          if (
+            typeof config[id] ===
+            "undefined"
+          ) {
+            return;
+          }
+
+
+          element.value =
+            config[id];
+
+
+          element.dispatchEvent(
+            new Event("input", {
+              bubbles: true
+            })
+          );
+
+        }
+      );
+
+
+      if (
+        typeof window.drawPreview ===
+        "function"
+      ) {
+
+        try {
+          window.drawPreview();
+        } catch (e) {}
+
+      }
+
+    }
+
+
+    function saveConfig() {
+
+      if (!db) {
+        return Promise.reject(
+          new Error(
+            "IndexedDB is not available."
+          )
+        );
+      }
+
+
+      const config =
+        readConfigFromUI();
+
+
+      return new Promise(
+        (resolve, reject) => {
+
+          const transaction =
+            db.transaction(
+              STORE_NAME,
+              "readwrite"
+            );
+
+
+          const store =
+            transaction.objectStore(
+              STORE_NAME
+            );
+
+
+          const request =
+            store.put(
+              config,
+              "current"
+            );
+
+
+          request.onsuccess =
+            () => resolve();
+
+
+          request.onerror =
+            () => reject(
+              request.error
+            );
+
+        }
+      );
+
+    }
+
+
+    function loadConfig() {
+
+      if (!db) {
+        return Promise.reject(
+          new Error(
+            "IndexedDB is not available."
+          )
+        );
+      }
+
+
+      return new Promise(
+        (resolve, reject) => {
+
+          const transaction =
+            db.transaction(
+              STORE_NAME,
+              "readonly"
+            );
+
+
+          const store =
+            transaction.objectStore(
+              STORE_NAME
+            );
+
+
+          const request =
+            store.get("current");
+
+
+          request.onsuccess =
+            () => {
+
+              resolve(
+                request.result || null
+              );
+
+            };
+
+
+          request.onerror =
+            () => reject(
+              request.error
+            );
+
+        }
+      );
+
+    }
+
+
+    function deleteConfig() {
+
+      if (!db) {
+        return Promise.reject(
+          new Error(
+            "IndexedDB is not available."
+          )
+        );
+      }
+
+
+      return new Promise(
+        (resolve, reject) => {
+
+          const transaction =
+            db.transaction(
+              STORE_NAME,
+              "readwrite"
+            );
+
+
+          const store =
+            transaction.objectStore(
+              STORE_NAME
+            );
+
+
+          const request =
+            store.delete("current");
+
+
+          request.onsuccess =
+            () => resolve();
+
+
+          request.onerror =
+            () => reject(
+              request.error
+            );
+
+        }
+      );
+
+    }
+
+
+    async function performSave() {
+
+      try {
+
+        setConfigStatus(
+          "Saving locally...",
+          "saving"
+        );
+
+
+        await saveConfig();
+
+
+        setConfigStatus(
+          "✓ Saved locally",
+          "ready"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "[Local Config] Save failed:",
+          error
+        );
+
+
+        setConfigStatus(
+          "Local save unavailable",
+          "error"
+        );
+
+      }
+
+    }
+
+
+    function scheduleSave() {
+
+      clearTimeout(
+        saveTimer
+      );
+
+
+      saveTimer =
+        setTimeout(
+          performSave,
+          700
+        );
+
+    }
+
+
+    async function resetConfig() {
+
+      const confirmed =
+        window.confirm(
+          "Reset your saved local configuration?"
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      try {
+
+        setConfigStatus(
+          "Resetting...",
+          "saving"
+        );
+
+
+        await deleteConfig();
+
+
+        const defaults = {
+
+          titleInput: "",
+          creditInput: "",
+          voiceInput: "af_heart",
+          speedInput: "1",
+          subtitlesInput: "true",
+          narrationInput: ""
+
+        };
+
+
+        applyConfigToUI(
+          defaults
+        );
+
+
+        setConfigStatus(
+          "✓ Local configuration reset",
+          "ready"
+        );
+
+
+        if (
+          typeof window.setStatus ===
+          "function"
+        ) {
+
+          try {
+
+            window.setStatus(
+              "Local configuration reset."
+            );
+
+          } catch (e) {}
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "[Local Config] Reset failed:",
+          error
+        );
+
+
+        setConfigStatus(
+          "Reset failed",
+          "error"
+        );
+
+      }
+
+    }
+
+
+    function bindAutoSave() {
+
+      CONFIG_FIELDS.forEach(
+        (id) => {
+
+          const element =
+            document.getElementById(id);
+
+
+          if (!element) {
+            return;
+          }
+
+
+          element.addEventListener(
+            "input",
+            scheduleSave
+          );
+
+
+          element.addEventListener(
+            "change",
+            scheduleSave
+          );
+
+        }
+      );
+
+
+      const saveButton =
+        document.getElementById(
+          "saveConfigBtn"
+        );
+
+
+      const resetButton =
+        document.getElementById(
+          "resetConfigBtn"
+        );
+
+
+      if (saveButton) {
+
+        saveButton.addEventListener(
+          "click",
+          performSave
+        );
+
+      }
+
+
+      if (resetButton) {
+
+        resetButton.addEventListener(
+          "click",
+          resetConfig
+        );
+
+      }
+
+    }
+
+
+    async function initializeLocalConfig() {
+
+      try {
+
+        await openDatabase();
+
+
+        const savedConfig =
+          await loadConfig();
+
+
+        if (savedConfig) {
+
+          applyConfigToUI(
+            savedConfig
+          );
+
+
+          setConfigStatus(
+            "✓ Local configuration restored",
+            "ready"
+          );
+
+        } else {
+
+          setConfigStatus(
+            "Local configuration ready",
+            "ready"
+          );
+
+        }
+
+
+        bindAutoSave();
+
+
+      } catch (error) {
+
+        console.error(
+          "[Local Config] Initialization failed:",
+          error
+        );
+
+
+        setConfigStatus(
+          "Local storage unavailable",
+          "error"
+        );
+
+      }
+
+    }
+
+
+    if (
+      document.readyState ===
+      "loading"
+    ) {
+
+      document.addEventListener(
+        "DOMContentLoaded",
+        initializeLocalConfig,
+        { once: true }
+      );
+
+    } else {
+
+      initializeLocalConfig();
+
+    }
+
+
+    window.IAFLocalConfig = {
+
+      save: performSave,
+
+      reset: resetConfig,
+
+      load: loadConfig
+
+    };
+
+  })();
+  </script>
+
+
+  <!-- =========================
+       ADVERTISEMENT LOADER
+  ========================= -->
+
+  <script src="../../asset/ads.js"></script>
+
+
+  <!-- =========================
+       GENERATOR SCRIPTS
   ========================= -->
 
   <script src="video-generator.js"></script>
+
   <script src="ui.js"></script>
 
 </body>
 </html>
+```
